@@ -1,7 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 
 const instance = axios.create({
-
+  baseURL : process.env.React_APP_BASE_API,
+  timeout : 5000
 })
 
 instance.interceptors.request.use((config :InternalAxiosRequestConfig) => {
