@@ -39,7 +39,7 @@ https://gitee.com/zhang-qingyou
 
 #### 技术栈
 
-React18 + React-Router + redux + vite + TypeScript  
+React18 + React-Router + redux + craco + TypeScript  
 
 
 
