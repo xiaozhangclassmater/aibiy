@@ -20,7 +20,13 @@ module.exports = {
   ],
   devServer : {
     host : '0.0.0.0',
-    port : 5147
+    port : 5147,
+    proxy : {
+      '/api': {
+        target: "http://codercba.com:1888/airbnb/api",
+        pathRewrite: { '^/api': '' },
+      },
+    }
   },
   webpack : {
     alias : {
@@ -28,4 +34,3 @@ module.exports = {
     }
   }
 }
-export { }
