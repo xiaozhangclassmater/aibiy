@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "composite": true,
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "node"
   },
-  "include": ["craco.config.ts"]
+  "include": [
+    "craco.config.ts"
+  ]
 }
