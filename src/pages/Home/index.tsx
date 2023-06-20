@@ -1,5 +1,4 @@
 import { memo, useEffect } from 'react';
-
 const Home = memo(() => {
   const queryHomeList = () => {
     // const res = await getHomeList('/api/home/highscore', {})
@@ -9,7 +8,9 @@ const Home = memo(() => {
     queryHomeList()
   }, [])
   return (
-    <div>Home</div>
+    <div>
+      {/* <Svg/> */}
+    </div>
   )
 })
 

@@ -1,8 +1,12 @@
 import { memo } from 'react'
+import AbiHeaderRightWrapper from './style'
 
 const AibiHeaderRight = memo(() => {
   return (
-    <div>AibiHeaderRight</div>
+    <AbiHeaderRightWrapper>
+      <div>AibiHeaderRight</div>
+    </AbiHeaderRightWrapper>
+     
   )
 })
 

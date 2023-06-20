@@ -1,6 +1,6 @@
 import AibiHeader from '@/components/header';
 import { useRoutes } from 'react-router-dom';
-import AibiFooter from './components/footer';
+import AibiFooter from './components/Footer';
 import routes from './router';
 
 function App() {

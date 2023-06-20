@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
-const AbiRightWrapper = styled.div`
-  display: block;
+const AbiHeaderRightWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  
 `
-export default AbiRightWrapper
+export default AbiHeaderRightWrapper

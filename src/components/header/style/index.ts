@@ -4,9 +4,9 @@ const AibiHeaderWrapper = styled.div`
   display : flex;
   width : 100%;
   height : 80px;
-  border :1px solid red;
-  display: block;
-  
-
+  padding: 0 50px;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom : 1px solid #eeeeee;
 `
 export default AibiHeaderWrapper
