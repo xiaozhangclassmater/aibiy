@@ -1,3 +1,4 @@
+
 import { memo, useEffect } from 'react';
 const Home = memo(() => {
   const queryHomeList = () => {
@@ -9,7 +10,6 @@ const Home = memo(() => {
   }, [])
   return (
     <div>
-      {/* <Svg/> */}
     </div>
   )
 })
