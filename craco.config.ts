@@ -11,7 +11,6 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {
             additionalData: `@import "@/assets/styles/variables.less";`,
-            // modifyVars: { '@primary-color': '#1DA57A' }, // 配置全局 less变量
             javascriptEnabled: true,
           },
         },
@@ -34,9 +33,6 @@ module.exports = {
       loaderOptions: {
         additionalData: `@import "@/assets/styles/variables.less";`
       },
-      globalVars: {
-        primary: '#ff385c'
-      }
     },
   },
   webpack: {
