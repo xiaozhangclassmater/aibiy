@@ -10,7 +10,7 @@ const AbiHeaderLeftWrapper = styled.div`
     font-weight: 800;
     align-items: center;
     user-select: none;
-    cursor: pointer;
+    cursor: ${props => props.theme.SmallHand};
     color: ${({ theme }) => theme.primaryColor};
     .text{
       margin-left: 5px;

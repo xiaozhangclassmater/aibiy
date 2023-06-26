@@ -7,6 +7,7 @@ const AbiHeaderRightWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   .Feature-Menus{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -36,6 +37,7 @@ const AbiHeaderRightWrapper = styled.div`
       border-radius: 30px;
       margin-left: 5px;
       align-items: center;
+      cursor: ${props => props.theme.SmallHand};
       border: 1px solid ${props => props.theme.themeBorder};
       &:hover{
         box-shadow: var(--e-swdx-p);
@@ -52,4 +54,20 @@ const AbiHeaderRightWrapper = styled.div`
     }
   }
 `
-export default AbiHeaderRightWrapper
+const MenusWrapper = styled.div`
+  position: absolute;
+  right: 15px;
+  top: 50px;
+  width: 204px;
+  height: 201px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow : var(--e-swdx-p);
+`
+
+
+export {
+  AbiHeaderRightWrapper,
+  MenusWrapper
+}
+
