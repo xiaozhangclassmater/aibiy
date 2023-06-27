@@ -3,7 +3,10 @@ const themeConfig = {
   themeBorder: '#dddddd',
   themeBorderHover: '#000000',
   secondColor: '#00848A',
-  SmallHand: 'pointer'
+  SmallHand: 'pointer',
+  textColor: {
+    primaryColor: '#222222'
+  }
 }
 
 export default themeConfig
