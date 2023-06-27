@@ -1,15 +1,30 @@
 
+import { getGoodPriceInfo } from '@/api/Home';
+import { goodPriceAction } from '@/store/modules/Home';
 import { memo, useEffect } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import HomeBanner from './components/HomeBanner';
+import HomeContent from './components/HomeContent';
 const Home = memo(() => {
-  const queryHomeList = () => {
-    // const res = await getHomeList('/api/home/highscore', {})
-    // console.log("响应结果", res);
+  const dispatch = useDispatch()
+  const goodPriceInfo = useSelector((state : storeStateType) => state.HomeModule.goodPriceInfo , shallowEqual)
+
+  const queryHomePageData = async () => {
+    disPatchGoodPriceInfo()
+  }
+  const disPatchGoodPriceInfo = async() => {
+    try {
+      const { data } = await getGoodPriceInfo('/api/home/goodprice')
+      dispatch(goodPriceAction(data))
+    } catch (error) {}
   }
   useEffect(() => {
-    queryHomeList()
-  }, [])
+    queryHomePageData()
+  } , [dispatch])
   return (
-    <div>
+    <div className='HomeRoot'>
+      <HomeBanner/>
+      <HomeContent goodPriceInfo={goodPriceInfo} />
     </div>
   )
 })
