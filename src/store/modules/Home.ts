@@ -1,9 +1,19 @@
-// import { createSlice } from '@reduxjs/toolkit'
-// const HomeModule = createSlice({
-//   initialState : {
+import { createSlice } from '@reduxjs/toolkit';
+const HomeModule = createSlice({
+  initialState: {
+    goodPriceInfo: {
 
-//   },
-//   reducers : {}
-// })
+    } as goodPriceResponse
+  },
+  name: 'Home',
+  reducers: {
+    goodPriceAction(state, { payload }) {
+      state.goodPriceInfo = payload
+      console.log(payload);
 
-// export default HomeModule
+    }
+  }
+})
+export const { goodPriceAction } = HomeModule.actions
+export default HomeModule
+
