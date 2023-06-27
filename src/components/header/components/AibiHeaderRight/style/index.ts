@@ -58,11 +58,36 @@ const MenusWrapper = styled.div`
   position: absolute;
   right: 15px;
   top: 50px;
-  width: 204px;
+  width: 234px;
   height: 201px;
   background-color: #fff;
   border-radius: 15px;
+  user-select: none;
   box-shadow : var(--e-swdx-p);
+  .menus-contianer{
+    width: 100%;
+    height: 100%;
+    padding: 8px 0px;
+    li {
+      height: 40px;
+      line-height: 35px;
+      padding-left: 10px;
+      font-size: 14px;
+      &:hover{
+        background-color: #f7f7f7;
+      }
+      &:first-child{
+        color: ${props => props.theme.textColor.primaryColor};
+        font-weight: 600;
+      }
+    }
+    .line {
+      height: 1px;
+      width: 100%;
+      margin: 5px auto;
+      background-color:  ${props => props.theme.themeBorder}; ;
+    }
+  }
 `
 
 

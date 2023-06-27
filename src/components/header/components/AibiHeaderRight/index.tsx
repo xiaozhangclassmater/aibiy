@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import Menus from './components/Menus';
 import { AbiHeaderRightWrapper } from './style';
 
@@ -7,10 +7,34 @@ const AibiHeaderRight = memo(() => {
   const MenusSvg = useMemo(()=> require('@/icons/svg/menu.svg').ReactComponent , [])
   const PersonalSvg = useMemo(()=> require('@/icons/svg/personal.svg').ReactComponent , [])
   const [ showMenus , setShowMenus ] = useState(false)
+  const menusContainer = useRef<Element>(null)
+  useEffect( () => {
+    bindGlobalWindowEvent()
+    return () => {
+      cancleGlobalWindowEvent()
+    }
+  } , [])
+  /**
+   * 绑定全局window 事件,判断元素是否咋点击区域内
+   */
+  
+  const bindGlobalWindowEvent  = () => {
+    window.addEventListener ('click' , windowHandleClick , true)
+  }
+  const cancleGlobalWindowEvent  = () => {
+    window.removeEventListener ('click' , windowHandleClick)
+  }
+  const windowHandleClick = (e:MouseEvent) => {
+    if(menusContainer.current?.contains(e.target as Node)) return 
+    setShowMenus(false)
+  }
   const persolalMenuHandle = ()=> {
-    console.log(111);
-    
     setShowMenus(!showMenus)
+  }
+  // 子组件 item 点击
+  const menuItemClickHandle = (type : string) => {
+    console.log(type);
+    
   }
   return (
     <AbiHeaderRightWrapper className='right'>
@@ -26,7 +50,7 @@ const AibiHeaderRight = memo(() => {
             <PersonalSvg/>
           </div>
         </div>
-        {showMenus && <Menus/>}
+        {showMenus && <Menus ref={menusContainer} menuItemClickHandle={menuItemClickHandle} />}
       </div>
     </AbiHeaderRightWrapper>
      
