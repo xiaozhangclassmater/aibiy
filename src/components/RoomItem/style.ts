@@ -1,10 +1,19 @@
 import { styled } from "styled-components";
-
-export const RoomItemWapper = styled.div`
-  width: 25%;
+interface RoomItemWapperProps {
+  verify_color?: string
+  content_color?: string,
+  proportion: string | number
+}
+export const RoomItemWapper = styled.div<RoomItemWapperProps>`
+  width: ${props => props.proportion};
   padding: 8px;
   box-sizing: border-box;
   cursor: pointer;
+  &:hover{
+    transform: translateY(-5px);
+    transition: all .8s;
+    box-shadow: ${props => props.theme.defaultShadow};
+  }
   .cover {
     position: relative;
     box-sizing: border-box;
@@ -25,6 +34,7 @@ export const RoomItemWapper = styled.div`
     margin: 10px 0 5px;
     font-size: 12px;
     font-weight: 700;
+    color : ${props => props.verify_color}
   }
 
   .product-name {
@@ -38,5 +48,16 @@ export const RoomItemWapper = styled.div`
   }
   .price{
     margin-top: 5px;
+  }
+  .evaluate{
+    .mark{
+      .ant-rate{
+        color: ${props => props.theme.secondColor};
+      }
+    }
+    .commonCount{
+      margin-left: 5px;
+      color: ${props => props.content_color};
+    }
   }
 `

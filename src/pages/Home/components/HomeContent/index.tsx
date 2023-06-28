@@ -1,15 +1,18 @@
 import RoomGroup from '@/components/RoomGroup'
-import { isEmpty } from '@/utils'
 import { memo } from 'react'
 import { HomeContentWapper } from './style'
 interface HomeContentProps {
-  goodPriceInfo : goodPriceResponse
+  goodPriceInfo : baseRoomInfo
+  higHscoreInfo : baseRoomInfo
 }
-const HomeContent = memo(( { goodPriceInfo } : HomeContentProps ) => {
+const HomeContent = memo(( { goodPriceInfo , higHscoreInfo} : HomeContentProps ) => {
   return (
     <HomeContentWapper className='HomeContent'>
       <div className='contnet-wapper'>
-        { !isEmpty(goodPriceInfo) &&  <RoomGroup productInfo={goodPriceInfo} />}
+        {/*佛山高性价比房源  */}
+        <RoomGroup skeletonNum={10}  productInfo={goodPriceInfo} />
+         {/*佛山高评分房源  */}
+        <RoomGroup skeletonNum={10} productInfo={higHscoreInfo} />
       </div>
     </HomeContentWapper>
   )

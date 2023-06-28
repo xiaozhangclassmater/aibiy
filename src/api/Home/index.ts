@@ -1,14 +1,21 @@
 import request from "@/services";
 
-export function getGoodPriceInfo(url: string) {
+export function queryGoodPriceInfo(url: string) {
   return request<baseRoomInfo>({
     url,
     method: 'get'
   })
 }
 
-export function getHighscoreInfo(url: string) {
+export function queryHighscoreInfo(url: string) {
   return request<baseRoomInfo>({
+    url,
+    method: 'get'
+  })
+}
+
+export function queryHotSourceRegionInfo(url: string) {
+  return request({
     url,
     method: 'get'
   })

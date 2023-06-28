@@ -1,22 +1,49 @@
 
-import { getGoodPriceInfo } from '@/api/Home';
-import { goodPriceAction } from '@/store/modules/Home';
+import { queryGoodPriceInfo, queryHighscoreInfo, queryHotSourceRegionInfo } from '@/api/Home';
+import { goodPriceAction, higHscoreAction } from '@/store/modules/Home';
 import { memo, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import HomeBanner from './components/HomeBanner';
 import HomeContent from './components/HomeContent';
 const Home = memo(() => {
   const dispatch = useDispatch()
-  const goodPriceInfo = useSelector((state : storeStateType) => state.HomeModule.goodPriceInfo , shallowEqual)
+  const {goodPriceInfo , higHscoreInfo } = useSelector((state : storeStateType) => state.HomeModule , shallowEqual)
 
   const queryHomePageData = async () => {
-    disPatchGoodPriceInfo()
+    disPatchGoodPriceInfo() 
+    dispatchHighscoreInfo()
+    dispatchHotSourceRegion()
   }
+  /**
+   * 
+   */
   const disPatchGoodPriceInfo = async() => {
     try {
-      const { data } = await getGoodPriceInfo('/api/home/goodprice')
+      const { data } = await queryGoodPriceInfo('/api/home/goodprice')
       dispatch(goodPriceAction(data))
     } catch (error) {}
+  }
+  /**
+   * @params 
+   * @description 高分房源接口数据查询
+   */
+  const dispatchHighscoreInfo = async () => {
+    try {
+      const { data } = await queryHighscoreInfo('/api/home/highscore')
+      dispatch(higHscoreAction(data))
+    } catch (error) {}
+  }
+  /**
+   * @description 热门目的地数据分发和查询
+   */
+  const dispatchHotSourceRegion = async () => {
+    try {
+      const { data } = await queryHotSourceRegionInfo('/api/home/discount')
+      console.log(data);
+      
+    } catch (error) {
+      
+    }
   }
   useEffect(() => {
     queryHomePageData()
@@ -24,7 +51,7 @@ const Home = memo(() => {
   return (
     <div className='HomeRoot'>
       <HomeBanner/>
-      <HomeContent goodPriceInfo={goodPriceInfo} />
+      <HomeContent goodPriceInfo={goodPriceInfo} higHscoreInfo={higHscoreInfo} />
     </div>
   )
 })
