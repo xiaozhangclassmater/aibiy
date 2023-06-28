@@ -1,13 +1,13 @@
 
 import { queryGoodPriceInfo, queryHighscoreInfo, queryHotSourceRegionInfo } from '@/api/Home';
-import { goodPriceAction, higHscoreAction } from '@/store/modules/Home';
+import { saveGoodPriceAction, saveHigHscoreAction, saveHotSourceRegion } from '@/store/modules/Home';
 import { memo, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import HomeBanner from './components/HomeBanner';
 import HomeContent from './components/HomeContent';
 const Home = memo(() => {
   const dispatch = useDispatch()
-  const {goodPriceInfo , higHscoreInfo } = useSelector((state : storeStateType) => state.HomeModule , shallowEqual)
+  const {goodPriceInfo , higHscoreInfo , hotSourceRegion } = useSelector((state : storeStateType) => state.HomeModule , shallowEqual)
 
   const queryHomePageData = async () => {
     disPatchGoodPriceInfo() 
@@ -15,12 +15,12 @@ const Home = memo(() => {
     dispatchHotSourceRegion()
   }
   /**
-   * 
+   * @description disPatchGoodPriceInfo 分发查询 高性价比的房源数据
    */
   const disPatchGoodPriceInfo = async() => {
     try {
       const { data } = await queryGoodPriceInfo('/api/home/goodprice')
-      dispatch(goodPriceAction(data))
+        dispatch(saveGoodPriceAction(data))
     } catch (error) {}
   }
   /**
@@ -30,7 +30,7 @@ const Home = memo(() => {
   const dispatchHighscoreInfo = async () => {
     try {
       const { data } = await queryHighscoreInfo('/api/home/highscore')
-      dispatch(higHscoreAction(data))
+      dispatch(saveHigHscoreAction(data))
     } catch (error) {}
   }
   /**
@@ -39,8 +39,7 @@ const Home = memo(() => {
   const dispatchHotSourceRegion = async () => {
     try {
       const { data } = await queryHotSourceRegionInfo('/api/home/discount')
-      console.log(data);
-      
+        dispatch(saveHotSourceRegion(data))
     } catch (error) {
       
     }
@@ -51,7 +50,7 @@ const Home = memo(() => {
   return (
     <div className='HomeRoot'>
       <HomeBanner/>
-      <HomeContent goodPriceInfo={goodPriceInfo} higHscoreInfo={higHscoreInfo} />
+      <HomeContent goodPriceInfo={goodPriceInfo} higHscoreInfo={higHscoreInfo} hotCityProductInfo={hotSourceRegion}  />
     </div>
   )
 })

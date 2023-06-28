@@ -3,15 +3,25 @@ import { size } from "./"
 import { RoomItemSkeltonWapper } from "./style"
 interface RoomItemSkeletonProps {
   size? : size
-  active? : boolean
+  active? : boolean,
+  style? : React.CSSProperties
+  imageStyle? : React.CSSProperties 
 }
-const RoomItemSkt = ({ size = 'small' , active = false }:RoomItemSkeletonProps) => {
+const RoomItemSkt = ({ 
+  size = 'small' ,
+  active = false ,
+  style ,
+  imageStyle = {
+    width:'246px',
+    height:'163px'
+  }
+  }:RoomItemSkeletonProps) => {
   return (
-   <RoomItemSkeltonWapper>
-      <Skeleton.Image active={active} style={{  width:'246px',height:'163px'}} />
-      <Skeleton.Button className="skeleton-button" style={{  width:'200px'}} size="small" active={active} />
-      <Skeleton.Button className="skeleton-button" style={{  width:'246px'}} active={active}  />
-      <Skeleton.Button className="skeleton-button" style={{  width:'246px'}} active={active}  />
+   <RoomItemSkeltonWapper style={style}>
+      <Skeleton.Image active={active} style={imageStyle} />
+      <Skeleton.Button  className="skeleton-button" style={{  width:'200px'}} size={size} active={active} />
+      <Skeleton.Button className="skeleton-button" style={{  width:'246px'}} size={size} active={active}  />
+      <Skeleton.Button className="skeleton-button" style={{  width:'246px'}} size={size} active={active}  />
    </RoomItemSkeltonWapper>
   )
 }

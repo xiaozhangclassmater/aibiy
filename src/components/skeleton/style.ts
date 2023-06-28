@@ -9,3 +9,12 @@ export const RoomItemSkeltonWapper = styled.div`
     margin: 2.5px auto;
   }
 `
+export const TabCardSkeletonWapper = styled.div`
+  margin-top: 15px;
+  .ant-skeleton{
+    margin: 0 5px;
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+`

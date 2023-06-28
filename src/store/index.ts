@@ -9,6 +9,7 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
+  devTools: true
 })
 
 

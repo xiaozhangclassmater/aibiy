@@ -1,21 +1,36 @@
 import { ReactComponent as LeftIcon } from '@/icons/svg/arrow-left.svg'
 import { ReactComponent as RightIcon } from '@/icons/svg/arrow-right.svg'
-import { memo, useState } from 'react'
+import classNames from 'classnames'
+import { memo, useEffect, useState } from 'react'
 import { TabCardWapper } from './style'
 
-const TabCard = memo(() => {
+interface TabCardProps {
+  tabList : dest_address_list,
+  getProductInfo : (cityName : string) => void
+}
+
+const TabCard = memo(( { tabList , getProductInfo } : TabCardProps ) => {
   const [currentIndex , setCurrentIndex] = useState(0)
+  const tabItemClickHandle = (index : number , cityName : string) : void => {
+    setCurrentIndex(index)
+    getProductInfo(cityName)
+  }
+  useEffect( () => {
+    getProductInfo(tabList[0].name)
+  } , [])
+  const computedIndex = (index : number) => currentIndex === index
+  
   return (
     <TabCardWapper>
       <div className='tab-container'>
         <div className='leftIcon'>
           <LeftIcon/>
         </div>
-        <div className='tab-item'>南京</div>
-        <div className='tab-item'>广州</div>
-        <div className='tab-item'>重庆</div>
-        <div className='tab-item'>长沙</div>
-        <div className='tab-item'>西安</div>
+        {
+          tabList.length && 
+          tabList.map((item , index) => <div className={classNames('tab-item' ,{ 'active-item' : computedIndex(index)})}  
+          key={index} onClick={() => tabItemClickHandle(index , item.name)}>{item.name}</div>)
+        }
         <div className='rightIcon'>
           <RightIcon/>
         </div>

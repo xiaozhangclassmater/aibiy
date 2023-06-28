@@ -9,6 +9,7 @@ export const RoomItemWapper = styled.div<RoomItemWapperProps>`
   padding: 8px;
   box-sizing: border-box;
   cursor: pointer;
+  border-radius : 10px;
   &:hover{
     transform: translateY(-5px);
     transition: all .8s;
