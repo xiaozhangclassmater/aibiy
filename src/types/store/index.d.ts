@@ -1,5 +1,6 @@
 interface storeStateType {
   HomeModule: {
-    goodPriceInfo: goodPriceResponse
+    goodPriceInfo: baseRoomInfo,
+    higHscoreInfo: baseRoomInfo
   }
 }

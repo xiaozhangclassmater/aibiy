@@ -1,12 +1,12 @@
-interface goodPriceResponse {
-  list: GoodPriceItem[],
+interface baseRoomInfo {
+  list: RoomItem[],
   title?: string,
   type?: string,
   _id?: string,
   subTitle: string
 }
 
-interface GoodPriceItem {
+interface RoomItem {
   bottom_info: bottom_info_Item
   id: string
   image_url: string
