@@ -11,3 +11,12 @@ export const RoomGroupWapper = styled.div`
     }
   }
 `
+
+export const RoomGroupSkeletonWapper = styled.div`
+  .RoomItem-skeleton-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8px;
+  }
+
+`

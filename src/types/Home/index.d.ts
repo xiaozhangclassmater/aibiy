@@ -1,6 +1,6 @@
 interface baseRoomInfo {
   list: RoomItem[],
-  title?: string,
+  title: string,
   type?: string,
   _id?: string,
   subTitle: string

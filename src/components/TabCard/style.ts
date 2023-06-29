@@ -19,14 +19,19 @@ export const TabCardWapper = styled.div`
       box-shadow: var(--e-swdx-p);
     }
     .tab-item{
-      width: 90px;
+      width: auto;
       height: 40px;
+      min-width: 90px;
       line-height: 40px;
       text-align: center;
       border: 1px solid #e9e9e8;
       border-radius: 5px;
       margin: 0 5px;
+      transition: all .3s;
       cursor: ${props => props.theme.SmallHand};
+      &:hover{
+        box-shadow: var(--e-swdx-p);
+      }
       &:first-child{
         margin-left: 0px;
       }

@@ -1,6 +1,7 @@
 import { isEmpty } from '@/utils'
 import { memo, useMemo, useState } from 'react'
 import RoomItem from '../RoomItem'
+import SectionTitle from '../SectionTitle'
 import TabCard from '../TabCard'
 import TabCardRgSkeleton from './TabCardRgSkeleton'
 import { TabCardRoomGroupWapper } from './style'
@@ -22,8 +23,7 @@ const TabCardRoomGroup = memo(( { hotCityProductInfo  , proportion = '33.33%'} :
     <TabCardRoomGroupWapper>
       {
         (!isEmpty(hotCityProductInfo)) && <div className='TabCard-RoomGroup-Wapper'>
-          {hotCityProductInfo.title ? <p className='title'>{hotCityProductInfo.title}</p> : <p>热门城市</p>}
-          {hotCityProductInfo.subtitle ? <div className='desc'>{hotCityProductInfo.subtitle}</div> : <div>美丽的城市，邻人向往</div>}
+        <SectionTitle title={hotCityProductInfo.title || '热门城市'} subTitle={hotCityProductInfo.subtitle || "美丽的城市，邻人向往"} />
         <TabCard tabList={hotCityProductInfo.dest_address || []} getProductInfo={getCityHousingResourceInfo}  />
         <div className='product-item-container'>
           {products?.length && products.map(item => <RoomItem proportion={computedProportion} item={item} key={item.id}/>)}

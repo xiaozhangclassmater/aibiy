@@ -10,13 +10,15 @@ interface TabCardProps {
 }
 
 const TabCard = memo(( { tabList , getProductInfo } : TabCardProps ) => {
+  console.log("render");
+  
   const [currentIndex , setCurrentIndex] = useState(0)
   const tabItemClickHandle = (index : number , cityName : string) : void => {
     setCurrentIndex(index)
     getProductInfo(cityName)
   }
   useEffect( () => {
-    getProductInfo(tabList[0].name)
+    getProductInfo(tabList[0].name) 
   } , [])
   const computedIndex = (index : number) => currentIndex === index
   

@@ -1,5 +1,5 @@
 import { Skeleton } from 'antd'
-import { size } from '.'
+import { size } from '..'
 interface TitleSkeletonProps {
   style? : React.CSSProperties,
   size?: size

@@ -8,7 +8,7 @@ export const RoomItemWapper = styled.div<RoomItemWapperProps>`
   width: ${props => props.proportion};
   padding: 8px;
   box-sizing: border-box;
-  cursor: pointer;
+  cursor: ${props => props.theme.SmallHand};
   border-radius : 10px;
   &:hover{
     transform: translateY(-5px);
@@ -49,11 +49,22 @@ export const RoomItemWapper = styled.div<RoomItemWapperProps>`
   }
   .price{
     margin-top: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    color: ${props => props.theme.secondColor};
+    span{
+      font-weight: 500;
+      font-size: 12px;
+      color: ${props => props.theme.themeBorderHover};
+    }
   }
   .evaluate{
     .mark{
       .ant-rate{
         color: ${props => props.theme.secondColor};
+        .ant-rate-star{
+          margin-inline-end: auto;
+        }
       }
     }
     .commonCount{

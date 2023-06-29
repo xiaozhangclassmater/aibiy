@@ -19,7 +19,7 @@ const RoomItem = memo(( { item , proportion } :RoomItemProps) => {
         </div>
         <div className='desc'>{item.verify_info.messages.join('.')}</div>
         <div className='product-name'>{item.name}</div>
-        <div className='price'>{item.price_format}/晚上</div>
+        <div className='price'>{item.price_format}<span> / 晚</span></div>
         <div className='evaluate'>
           <span className='mark'>
             <Rate disabled value={item.reviews_count}  style={{ fontSize: 10 }} />

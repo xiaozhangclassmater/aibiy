@@ -1,7 +1,7 @@
 import React from 'react';
-import RoomItemSkt from './RoomItemSkeleton';
-import TabCardSkeleton from './TabCardSkeleton';
-import TitleSkeleton from './TitleSkeleton';
+import RoomItemSkt from './modules/RoomItemSkeleton';
+import TabCardSkeleton from './modules/TabCardSkeleton';
+import TitleSkeleton from './modules/TitleSkeleton';
 export type size = 'small' | 'large' | 'default' | undefined
 
 interface AibiSkeletonProps{

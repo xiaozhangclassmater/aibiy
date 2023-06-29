@@ -1,6 +1,6 @@
 import { Skeleton } from "antd"
-import { size } from "./"
-import { RoomItemSkeltonWapper } from "./style"
+import { size } from ".."
+import { RoomItemSkeltonWapper } from "../style"
 interface RoomItemSkeletonProps {
   size? : size
   active? : boolean,

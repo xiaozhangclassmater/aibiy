@@ -1,6 +1,6 @@
 import { Skeleton } from 'antd'
 import { useState } from 'react'
-import { TabCardSkeletonWapper } from "./style"
+import { TabCardSkeletonWapper } from "../style"
 interface TabCardSkeletonProps {
   active? : boolean
 }
