@@ -3,7 +3,8 @@ const HomeModule = createSlice({
   initialState: {
     goodPriceInfo: {} as baseRoomInfo,
     higHscoreInfo: {} as baseRoomInfo,
-    hotSourceRegion: {} as HotSourceCityType
+    hotSourceRegion: {} as HotSourceCityType,
+    hotRecommendDesc: {} as HotRecemmendDestType
   },
   name: 'Home',
   reducers: {
@@ -15,9 +16,12 @@ const HomeModule = createSlice({
     },
     saveHotSourceRegion(state, { payload }) {
       state.hotSourceRegion = payload
+    },
+    saveHotRecommendDest(state, { payload }) {
+      state.hotRecommendDesc = payload
     }
   }
 })
-export const { saveGoodPriceAction, saveHigHscoreAction, saveHotSourceRegion } = HomeModule.actions
+export const { saveGoodPriceAction, saveHigHscoreAction, saveHotSourceRegion, saveHotRecommendDest } = HomeModule.actions
 export default HomeModule
 

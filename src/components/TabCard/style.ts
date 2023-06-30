@@ -6,11 +6,14 @@ export const TabCardWapper = styled.div`
     display: flex;
     width: 1032px;
     height: 100%;
+    white-space: nowrap;
     align-items: center;
     .leftIcon,.rightIcon{
       display: flex;
       width: 30px;
       height: 30px;
+      flex-shrink: 0;
+      min-width: 30px;
       border-radius: 50%;
       background-color: #fff;
       justify-content: center;
@@ -18,24 +21,37 @@ export const TabCardWapper = styled.div`
       cursor: ${props => props.theme.SmallHand};
       box-shadow: var(--e-swdx-p);
     }
-    .tab-item{
-      width: auto;
-      height: 40px;
-      min-width: 90px;
-      line-height: 40px;
-      text-align: center;
-      border: 1px solid #e9e9e8;
-      border-radius: 5px;
-      margin: 0 5px;
-      transition: all .3s;
-      cursor: ${props => props.theme.SmallHand};
-      &:hover{
-        box-shadow: var(--e-swdx-p);
+    .tab-content{
+      display: flex;
+      overflow: scroll;
+      &::-webkit-scrollbar{
+        display: none;
       }
-      &:first-child{
-        margin-left: 0px;
+      .tab-item{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        height: 40px;
+        flex-shrink: 0;
+        min-width: 120px;
+        text-align: center;
+        border: 1px solid #e9e9e8;
+        border-radius: 5px;
+        margin: 0 5px;
+        padding: 10px;
+        box-sizing: border-box;
+        transition: all .3s;
+        cursor: ${props => props.theme.SmallHand};
+        &:hover{
+          box-shadow: var(--e-swdx-p);
+        }
+        &:first-child{
+          margin-left: 0px;
+        }
       }
     }
+    
     .active-item {
       background-color: ${props => props.theme.secondColor};
       color: #fff;

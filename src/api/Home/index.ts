@@ -20,3 +20,9 @@ export function queryHotSourceRegionInfo(url: string) {
     method: 'get'
   })
 }
+export function queryHotRecommendInfo(url: string) {
+  return request({
+    url,
+    method: 'get'
+  })
+}

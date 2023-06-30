@@ -1,18 +1,19 @@
 
-import { queryGoodPriceInfo, queryHighscoreInfo, queryHotSourceRegionInfo } from '@/api/Home';
-import { saveGoodPriceAction, saveHigHscoreAction, saveHotSourceRegion } from '@/store/modules/Home';
+import { queryGoodPriceInfo, queryHighscoreInfo, queryHotRecommendInfo, queryHotSourceRegionInfo } from '@/api/Home';
+import { saveGoodPriceAction, saveHigHscoreAction, saveHotRecommendDest, saveHotSourceRegion } from '@/store/modules/Home';
 import { memo, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import HomeBanner from './components/HomeBanner';
 import HomeContent from './components/HomeContent';
 const Home = memo(() => {
   const dispatch = useDispatch()
-  const {goodPriceInfo , higHscoreInfo , hotSourceRegion } = useSelector((state : storeStateType) => state.HomeModule , shallowEqual)
+  const {goodPriceInfo , higHscoreInfo , hotSourceRegion , hotRecommendDesc } = useSelector((state : storeStateType) => state.HomeModule , shallowEqual)
 
-  const queryHomePageData = async () => {
+  const queryHomePageData = () => {
     disPatchGoodPriceInfo() 
     dispatchHighscoreInfo()
     dispatchHotSourceRegion()
+    dispatchHotRecommend()
   }
   /**
    * @description disPatchGoodPriceInfo 分发查询 高性价比的房源数据
@@ -40,9 +41,14 @@ const Home = memo(() => {
     try {
       const { data } = await queryHotSourceRegionInfo('/api/home/discount')
         dispatch(saveHotSourceRegion(data))
-    } catch (error) {
-      
-    }
+    } catch (error) {}
+  }
+
+  const dispatchHotRecommend = async () =>  {
+    try {
+      const { data } = await queryHotRecommendInfo('/api/home/hotrecommenddest')
+      dispatch(saveHotRecommendDest(data))
+    } catch (error) {}
   }
   useEffect(() => {
     queryHomePageData()
@@ -50,7 +56,7 @@ const Home = memo(() => {
   return (
     <div className='HomeRoot'>
       <HomeBanner/>
-      <HomeContent goodPriceInfo={goodPriceInfo} higHscoreInfo={higHscoreInfo} hotCityProductInfo={hotSourceRegion}  />
+      <HomeContent goodPriceInfo={goodPriceInfo} higHscoreInfo={higHscoreInfo} hotCityProductInfo={hotSourceRegion} hotRecemmendDest={hotRecommendDesc}  />
     </div>
   )
 })

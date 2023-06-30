@@ -6,8 +6,9 @@ export const RoomGroupWapper = styled.div`
     height: 100%;
     .product-item-container{
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: wrap;  
       margin: 0 -8px;
+      transition: max-height 0.3s ease-in-out;
     }
   }
 `

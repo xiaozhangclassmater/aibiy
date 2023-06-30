@@ -3,5 +3,6 @@ interface storeStateType {
     goodPriceInfo: baseRoomInfo,
     higHscoreInfo: baseRoomInfo,
     hotSourceRegion: HotSourceCityType
+    hotRecommendDesc: HotRecemmendDestType
   }
 }

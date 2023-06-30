@@ -21,13 +21,16 @@ export const RoomItemWapper = styled.div<RoomItemWapperProps>`
     padding: 66.66% 8px 0;
     border-radius: 3px;
     overflow: hidden;
-
     img {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
+      &:hover{
+      transition: all .5s;
+      transform: scale(1.1);
+    }
     }
   }
 

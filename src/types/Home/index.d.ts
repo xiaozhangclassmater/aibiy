@@ -68,4 +68,7 @@ interface HotSourceCityType {
 }
 
 
+type HotRecemmendDestType = HotSourceCityType
+
+
 // type Optional<T, k extends keyof T> = 

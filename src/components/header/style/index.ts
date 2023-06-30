@@ -7,6 +7,6 @@ const AibiHeaderWrapper = styled.div`
   padding: 0 80px;
   align-items: center;
   box-sizing: border-box;
-  border-bottom : 1px solid #eeeeee;
+  border-bottom : 1px solid #eeeeee;  
 `
 export default AibiHeaderWrapper
