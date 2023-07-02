@@ -1,14 +1,17 @@
 
 import { queryGoodPriceInfo, queryHighscoreInfo, queryHotRecommendInfo, queryHotSourceRegionInfo } from '@/api/Home';
+import { useRequest } from '@/hooks/modules/ahooks';
 import { saveGoodPriceAction, saveHigHscoreAction, saveHotRecommendDest, saveHotSourceRegion } from '@/store/modules/Home';
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import HomeBanner from './components/HomeBanner';
 import HomeContent from './components/HomeContent';
 const Home = memo(() => {
+  console.log('HomeRender');
+  
   const dispatch = useDispatch()
   const {goodPriceInfo , higHscoreInfo , hotSourceRegion , hotRecommendDesc } = useSelector((state : storeStateType) => state.HomeModule , shallowEqual)
-
+  const [count , setCount] = useState(0)
   const queryHomePageData = () => {
     disPatchGoodPriceInfo() 
     dispatchHighscoreInfo()
@@ -50,11 +53,15 @@ const Home = memo(() => {
       dispatch(saveHotRecommendDest(data))
     } catch (error) {}
   }
+  const { data , loading } = useRequest<HotRecemmendDestType>(queryHotRecommendInfo,{argument:{ url : '/api/home/hotrecommenddest' } })
+  console.log("响应结果" ,data?._id ,loading);
+  
   useEffect(() => {
     queryHomePageData()
   } , [dispatch])
   return (
     <div className='HomeRoot'>
+      <button onClick={() => setCount(count+ 1)}>1111</button>
       <HomeBanner/>
       <HomeContent goodPriceInfo={goodPriceInfo} higHscoreInfo={higHscoreInfo} hotCityProductInfo={hotSourceRegion} hotRecemmendDest={hotRecommendDesc}  />
     </div>
