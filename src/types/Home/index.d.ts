@@ -72,3 +72,17 @@ type HotRecemmendDestType = HotSourceCityType
 
 
 // type Optional<T, k extends keyof T> = 
+interface cityItem {
+  city: string;
+  price: string;
+  picture_url: string;
+  image_url: string;
+}
+
+interface cityCataGaryType {
+  list: cityItem[]
+  subtitle: string,
+  title: string,
+  type: string,
+  _id: string
+}
