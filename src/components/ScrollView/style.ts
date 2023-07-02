@@ -24,7 +24,7 @@ const ScrollViewWapper = styled.div`
     left: -20px;
   }
   .rightIcon{
-    right: 0;
+    right: -20px;
   }
   .scroll-content-hidden {
     overflow: hidden;

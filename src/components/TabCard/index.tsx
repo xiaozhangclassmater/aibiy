@@ -26,7 +26,7 @@ const TabCard = memo(( { tabList , getProductInfo } : TabCardProps ) => {
   }
   return (
     <TabCardWapper>
-      <ScrollView>
+      <ScrollView scrollChildrenClassName='tab-item'>
         {
           tabList.length && 
           tabList.map((item , index) => <div className={classNames('tab-item' ,{ 'active-item' :  computedIndex(index)})}  
