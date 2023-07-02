@@ -14,6 +14,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any" : 'off',
     "@typescript-eslint/no-empty-function" : 'off',
     "react-hooks/exhaustive-deps" : 'off',
-    "no-empty" : 'off'
+    "no-empty" : 'off',
+    "@typescript-eslint/no-non-null-assertion" : 'off'
   },
 }
