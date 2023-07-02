@@ -6,7 +6,7 @@ const AbiHeaderLeft = memo(() => {
   const  navigate =  useNavigate()
   const Location = useLocation()
   const toHomePage = () => {
-    // if(Location.pathname === '/home') return    
+    if(Location.pathname === '/home') return    
     navigate('/')
   }
   return (
