@@ -26,3 +26,8 @@ export function queryHotRecommendInfo(url: string) {
     method: 'get'
   })
 }
+export function queryCityCategaryInfo(url: string) {
+  return request<cityCataGaryType>({
+    url,
+  })
+}
