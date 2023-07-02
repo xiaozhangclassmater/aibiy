@@ -11,7 +11,7 @@ type SectionFooterProps = {
 }
 
 const SectionFooter = memo(({text , mtop , IconSvg , seeMore , cityName} : SectionFooterProps) => {
-  console.log('render' , cityName);
+  // console.log('render' , cityName);
   
   const [ isPackUp , setisPackUp ] = useState(false)
   const computedText = useMemo(() => isPackUp ?  "收起" : ( text ||`查看${cityName ? `  ${cityName}  ` : ''}更多房源`) , [isPackUp , cityName])

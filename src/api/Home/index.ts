@@ -15,13 +15,13 @@ export function queryHighscoreInfo(url: string) {
 }
 
 export function queryHotSourceRegionInfo(url: string) {
-  return request({
+  return request<HotSourceCityType>({
     url,
     method: 'get'
   })
 }
 export function queryHotRecommendInfo(url: string) {
-  return request({
+  return request<HotSourceCityType>({
     url,
     method: 'get'
   })
