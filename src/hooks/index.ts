@@ -1,5 +1,7 @@
 import useRequest from "./modules/ahooks";
 
+import useIntersectionObserver from './modules/useIntersectionObserver';
 
-export { useRequest };
+
+export { useIntersectionObserver, useRequest };
 

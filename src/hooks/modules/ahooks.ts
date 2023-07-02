@@ -8,7 +8,7 @@ interface Options {
 export function useRequest<T>(Fn: (url: string) => Promise<AxiosResponse<T>>, options?: Options) {
   const [data, setData] = useState<T>()
   const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const run = () => {
     Fn(options?.argument?.url || process.env.React_APP_BASE_API!)
   }
