@@ -14,25 +14,28 @@ const ScrollView = memo(( { children , scrollChildrenClassName} : ScrollViewProp
   const scrollContentRef = useRef<HTMLDivElement>(null)
   const [offsetLeft , setOffset] = useState(0)
   useEffect( () => {
-    console.log('childre更新');
     const scrollWidth = scrollContentRef.current!.scrollWidth
-    const scrollClient = scrollContentRef.current!.clientWidth
-    const  totalDistance = scrollWidth - scrollClient
+    const scrollClientWidth = scrollContentRef.current!.clientWidth    
+    const  totalDistance = scrollWidth - scrollClientWidth
     cacheTotalDistance.current = totalDistance
-    setShowRightIcon( cacheTotalDistance.current > offsetLeft)
+    setShowRightIcon(cacheTotalDistance.current > offsetLeft)
   } , [children])
-
+  
   const controlClickHandle = (isRight : boolean) => {
+    const { scrollWidth ,clientWidth } = scrollContentRef.current!
     const currentIndex = isRight ? positionIndex + 1 : positionIndex - 1
     const scrollContentAll = scrollContentRef.current?.querySelectorAll(`.${scrollChildrenClassName}`) || []
     const currentTabItem = scrollContentAll[currentIndex] as HTMLElement
 
     const currentOffseteft = currentTabItem.offsetLeft
+    
+    // 重新计算一下距离 ， 保证不出现计算失误
+    cacheTotalDistance.current = (scrollWidth - clientWidth)
 
     setOffset(currentOffseteft)
 
     setPositionIndex(currentIndex)
-    
+    console.log(cacheTotalDistance.current, currentOffseteft);
     setShowRightIcon(cacheTotalDistance.current > currentOffseteft)
     
     setShowLeftIcon(currentOffseteft > 0)
