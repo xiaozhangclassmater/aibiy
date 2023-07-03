@@ -9,6 +9,7 @@ const TabCardRoomGroupWapper = styled.div`
     .product-item-container{
       display: flex;
       flex-wrap: wrap;
+      margin: 0 -8px;
     }
   }
   .TabCardRGSkeleton{

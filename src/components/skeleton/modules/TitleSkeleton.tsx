@@ -4,7 +4,7 @@ interface TitleSkeletonProps {
   style? : React.CSSProperties,
   size?: size
 }
-export default function TitleSkeleton({ style , size } : TitleSkeletonProps) {
+export default function TitleSkeleton({ style ={ width :'250px', marginBottom : '15px' } , size } : TitleSkeletonProps) {
   return (
     <>
     <Skeleton.Button block  size={size} style={style}/>

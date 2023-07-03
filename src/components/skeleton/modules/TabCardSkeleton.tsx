@@ -8,7 +8,7 @@ const TabCardSkeleton = ( { active = false } : TabCardSkeletonProps) => {
   const [ skeletons ] = useState<string[]>(new Array(8).fill(''))
   return (
     <TabCardSkeletonWapper>
-     {skeletons.map((item , index) => <Skeleton.Button active={active} size='large' key={index}></Skeleton.Button>)}
+     {skeletons.map((item , index) => <Skeleton.Button active={active} size='large' style={{width : '120px'}} key={index}></Skeleton.Button>)}
     </TabCardSkeletonWapper>
   )
 }
