@@ -26,8 +26,8 @@ const TabCardRoomGroup = memo(( { hotCityProductInfo  , proportion = '33.33%' , 
     setCurrentCityName(cityName)
     setProducts(hotCityProductInfo.dest_list[cityName])
   }
-  const seeMore = useCallback((isPackUp : boolean) => {
-     
+  const seeMore = useCallback(() => {
+    
   } , [hotCityProductInfo])
   
   return (

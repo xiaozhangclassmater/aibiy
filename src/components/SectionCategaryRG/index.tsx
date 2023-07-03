@@ -4,6 +4,7 @@ import { isEmpty } from '@/utils'
 import { memo } from 'react'
 import ScrollView from '../ScrollView'
 import SectionTitle from '../SectionTitle'
+import ScRgSkeleton from './ScRgSkeleton'
 import { SectionCategaryRgWapper } from './style'
 interface SectionCategaryRgProps {
   catagaryInfo : cityCataGaryType,
@@ -23,7 +24,7 @@ const SectionCategaryRg = memo(({ catagaryInfo , requestFn }:SectionCategaryRgPr
     </div>
     }
     {
-      // isEmpty(catagaryInfo) && <ScRgSkeleton/>
+      isEmpty(catagaryInfo) && <ScRgSkeleton/>
     }
     
    </SectionCategaryRgWapper>

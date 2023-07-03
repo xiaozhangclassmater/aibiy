@@ -1,5 +1,6 @@
 import themeConfig from '@/assets/theme';
-import React, { memo, useMemo, useState } from 'react';
+import React, { memo, useMemo } from 'react';
+import { useNavigate } from 'react-router';
 import { SectionFooterWapper } from './style';
 
 type SectionFooterProps = {
@@ -7,21 +8,19 @@ type SectionFooterProps = {
   mtop? : string,
   IconSvg : React.FC<React.SVGProps<SVGElement>>;
   cityName ?: string
-  seeMore : (isPackUp : boolean) => void
+  seeMore : () => void
 }
 
 const SectionFooter = memo(({text , mtop , IconSvg , seeMore , cityName} : SectionFooterProps) => {
-  // console.log('render' , cityName);
-  
-  const [ isPackUp , setisPackUp ] = useState(false)
-  const computedText = useMemo(() => isPackUp ?  "收起" : ( text ||`查看${cityName ? `  ${cityName}  ` : ''}更多房源`) , [isPackUp , cityName])
+  const routerLink = useNavigate()
+  const cacheText = useMemo(() =>( text ||`查看${cityName ? `  ${cityName}  ` : ''}更多房源`) , [cityName])
   const seeMoreHousingResource = () => {
-    seeMore(isPackUp)
-    setisPackUp(!isPackUp)
+    routerLink('/entire')
+    seeMore()
   }
   return (
     <SectionFooterWapper mtop={mtop} onClick={() => seeMoreHousingResource() } >
-      <div className='text'>{computedText}   
+      <div className='text'>{cacheText}   
       <span className='icon'><IconSvg fill={themeConfig.secondColor}/></span>
       </div>
     </SectionFooterWapper>

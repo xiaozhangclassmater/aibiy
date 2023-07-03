@@ -1,18 +1,36 @@
 import { ReactComponent as LeftIcon } from '@/icons/svg/arrow-left.svg'
 import { ReactComponent as RightIcon } from '@/icons/svg/arrow-right.svg'
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { ScrollViewWapper } from './style'
 interface ScrollViewProps {
   children : React.ReactNode,
-  scrollChildrenClassName : string
+  scrollChildrenClassName : string,
+  displacementsize? : string,
+  selectorType? : 'id' | 'class' | 'element'
 }
-const ScrollView = memo(( { children , scrollChildrenClassName} : ScrollViewProps ) => {
+const ScrollView = memo(( { children , scrollChildrenClassName ,displacementsize = '0 -8px' , selectorType = 'class'} : ScrollViewProps ) => {
   const [ showRightIcon , setShowRightIcon ] = useState(false)
   const [ showLeftIcon , setShowLeftIcon ] = useState(false)
   const [ positionIndex , setPositionIndex ] = useState(0)
   const cacheTotalDistance = useRef(0)
   const scrollContentRef = useRef<HTMLDivElement>(null)
+  
   const [offsetLeft , setOffset] = useState(0)
+  
+  const selectorHandle = useMemo(() => {
+    const newScrollChildrenClassName = scrollChildrenClassName.replace(/\^(#|.)/,'')
+    switch (selectorType) {
+      case 'class':
+        return `.${newScrollChildrenClassName}` 
+      case 'id':
+        return `#${newScrollChildrenClassName}`
+      case 'element':
+        return `${newScrollChildrenClassName}` 
+      default: newScrollChildrenClassName
+        break;
+    }
+  } , [selectorType])
+  
   useEffect( () => {
     const scrollWidth = scrollContentRef.current!.scrollWidth
     const scrollClientWidth = scrollContentRef.current!.clientWidth    
@@ -22,9 +40,10 @@ const ScrollView = memo(( { children , scrollChildrenClassName} : ScrollViewProp
   } , [children])
   
   const controlClickHandle = (isRight : boolean) => {
+    
     const { scrollWidth ,clientWidth } = scrollContentRef.current!
     const currentIndex = isRight ? positionIndex + 1 : positionIndex - 1
-    const scrollContentAll = scrollContentRef.current?.querySelectorAll(`.${scrollChildrenClassName}`) || []
+    const scrollContentAll = scrollContentRef.current?.querySelectorAll(selectorHandle!) || []
     const currentTabItem = scrollContentAll[currentIndex] as HTMLElement
 
     const currentOffseteft = currentTabItem.offsetLeft
@@ -35,14 +54,14 @@ const ScrollView = memo(( { children , scrollChildrenClassName} : ScrollViewProp
     setOffset(currentOffseteft)
 
     setPositionIndex(currentIndex)
-    console.log(cacheTotalDistance.current, currentOffseteft);
+    
     setShowRightIcon(cacheTotalDistance.current > currentOffseteft)
     
     setShowLeftIcon(currentOffseteft > 0)
   }
   
   return (
-    <ScrollViewWapper className='ScrollViewWapper'>
+    <ScrollViewWapper className='ScrollViewWapper' displacementsize={displacementsize}>
       { showLeftIcon && <div className='leftIcon' onClick={() => controlClickHandle(false)}> <LeftIcon/></div>}
       <div className='scroll-content-hidden'>
         <div className='scroll-content' ref={scrollContentRef} style={{transform : `translate(-${offsetLeft}px)` }}>

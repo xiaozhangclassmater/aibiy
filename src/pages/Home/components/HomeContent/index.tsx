@@ -44,7 +44,7 @@ const HomeContent = memo(( { goodPriceInfo } : HomeContentProps ) => {
         <TabCardRoomGroup hotCityProductInfo={cacheHotRecommendDesc} requestFn={getHotRecommendDescInfo} />
         
         <TabCardRoomGroup hotCityProductInfo={cacheHotSourceRegion} requestFn={getHotSourceRegionInfo} />
-        
+
         <SectionCategaryRg catagaryInfo={cacheCityCategaryInfo} requestFn={getCityCategaryInfo}  />
       </div>
     </HomeContentWapper>

@@ -16,8 +16,8 @@ interface RoomGroupProps {
 const RoomGroup = memo(( { productInfo  , skeletonNum = 8 , proportion = '25%' , requestFn } : RoomGroupProps ) => {
   const [ maxRenderCount , setMaxRenderCount] = useState(8)
   const { Element : roomGroupRef } = useLazyLoad(requestFn ? requestFn : () => {})
-  const seeMore = useCallback((isPackUp : boolean) => {
-    setMaxRenderCount(isPackUp ? 8 : productInfo.list.length)
+  const seeMore = useCallback(() => {
+    
   } , [productInfo])
   return (
     <RoomGroupWapper ref={roomGroupRef as any}>

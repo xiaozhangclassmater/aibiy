@@ -1,6 +1,10 @@
 import { styled } from "styled-components";
 
-const ScrollViewWapper = styled.div`
+interface ScrollViewWapperProps {
+  displacementsize?: string
+}
+
+const ScrollViewWapper = styled.div<ScrollViewWapperProps>`
   position: relative;
   display: flex;
   width: 100%;
@@ -32,6 +36,7 @@ const ScrollViewWapper = styled.div`
       position: relative;
       display: flex;
       align-items: center;
+      margin: ${props => props.displacementsize};
       transition: transform .2s ease;
       .tab-item{
         display: flex;
