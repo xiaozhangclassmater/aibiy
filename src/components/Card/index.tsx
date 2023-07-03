@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { CardWapper } from './style'
 interface CardProps {
   item : cityItem
-  style : React.CSSProperties
+  style? : React.CSSProperties
 }
 const AibiCard = memo(({style , item} : CardProps) => {
   return (
