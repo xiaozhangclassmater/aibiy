@@ -12,14 +12,14 @@ import { TabCardRoomGroupWapper } from './style'
 interface TabCardRoomGroupProps {
   hotCityProductInfo : HotSourceCityType,
   proportion? : string | number,
-  queryInfo : () => void
+  requestFn? : () => void
 }
 
-const TabCardRoomGroup = memo(( { hotCityProductInfo  , proportion = '33.33%' , queryInfo} : TabCardRoomGroupProps) => {
+const TabCardRoomGroup = memo(( { hotCityProductInfo  , proportion = '33.33%' , requestFn} : TabCardRoomGroupProps) => {
+  
   const [ products  , setProducts ] = useState<(RoomItem & newAddFiled)[]>([])
-  const [ maxRenderCount , setMaxRenderCount] = useState(6)
   const [ currentCityName , setCurrentCityName ] = useState('')
-  const { el : TabCardRef  } = useLazyLoad(queryInfo)
+  const { Element :TabCardRef  } = useLazyLoad(requestFn ? requestFn : () => {})
   const computedProportion = useMemo(() => (typeof proportion === 'string' ? proportion : proportion + '%') , [proportion])
   const cacheCurrentCityName = useMemo(() => currentCityName , [currentCityName])
   const getCityHousingResourceInfo = (cityName : string) => {
@@ -29,38 +29,7 @@ const TabCardRoomGroup = memo(( { hotCityProductInfo  , proportion = '33.33%' , 
   const seeMore = useCallback((isPackUp : boolean) => {
      
   } , [hotCityProductInfo])
-
   
-
-    console.log(TabCardRef.current);
-  // useEffect( () => {
-  //   const callback = (entries:IntersectionObserverEntry[]) => {
-
-  //     entries.forEach((entry:IntersectionObserverEntry) => {
-  //       if (entry.isIntersecting) {
-  //         // 元素进入可视区域
-  //         console.log('Element is visible' , entry);
-  //       } else {
-  //         // 元素离开可视区域
-  //         console.log('Element is not visible');
-  //       }
-  //     });
-  //   };
-  //   const options = {
-  //     root: null, // 可视区域的根元素。null 表示整个视口
-  //     rootMargin: '0px', // 可视区域的边缘留白
-  //     threshold: 0, // 目标元素与可视区域的交叉比例
-  //   };
-  //   const observer = new IntersectionObserver(callback , options)
-  //   if (TabCardRef.current) {
-  //     observer.observe(TabCardRef.current); // 监听目标元素
-  //   }
-
-  //   return () => {
-  //     observer.unobserve(TabCardRef.current!)
-  //   }
-  // } , [])
-
   return (
     <TabCardRoomGroupWapper ref={TabCardRef as any}>
       {

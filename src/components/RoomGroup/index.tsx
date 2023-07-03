@@ -1,3 +1,4 @@
+import { useLazyLoad } from '@/hooks/modules/useLazyLoad';
 import { ReactComponent as RightSvg } from '@/icons/svg/arrow-right.svg';
 import { isEmpty } from '@/utils';
 import { memo, useCallback, useState } from 'react';
@@ -10,14 +11,16 @@ interface RoomGroupProps {
   productInfo : baseRoomInfo,
   skeletonNum? : number,
   proportion? : string | number,
+  requestFn? : () => void
 }
-const RoomGroup = memo(( { productInfo  , skeletonNum = 8 , proportion = '25%' } : RoomGroupProps ) => {
+const RoomGroup = memo(( { productInfo  , skeletonNum = 8 , proportion = '25%' , requestFn } : RoomGroupProps ) => {
   const [ maxRenderCount , setMaxRenderCount] = useState(8)
+  const { Element : roomGroupRef } = useLazyLoad(requestFn ? requestFn : () => {})
   const seeMore = useCallback((isPackUp : boolean) => {
     setMaxRenderCount(isPackUp ? 8 : productInfo.list.length)
   } , [productInfo])
   return (
-    <RoomGroupWapper>
+    <RoomGroupWapper ref={roomGroupRef as any}>
       {
         !(isEmpty(productInfo)) && <div className='room-group-wapper'>
         <SectionTitle title={productInfo.title || '热门城市'} subTitle={productInfo.subTitle || "美丽的城市，邻人向往"} />
