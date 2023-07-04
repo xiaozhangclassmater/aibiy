@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 interface ScrollViewWapperProps {
   displacementsize?: string
+  flexshaking?: 0 | 1
 }
 
 const ScrollViewWapper = styled.div<ScrollViewWapperProps>`
@@ -14,7 +15,7 @@ const ScrollViewWapper = styled.div<ScrollViewWapperProps>`
     display: flex;
     width: 30px;
     height: 30px;
-    flex-shrink: 0;
+    flex-shrink: ${props => (props.flexshaking || 0)};
     min-width: 30px;
     border-radius: 50%;
     background-color: #fff;

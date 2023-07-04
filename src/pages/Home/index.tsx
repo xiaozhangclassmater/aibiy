@@ -8,6 +8,7 @@ import HomeContent from './components/HomeContent';
 const Home = memo(() => {
   const dispatch = useDispatch()
   const { goodPriceInfo } = useSelector((state : storeStateType) => state.HomeModule , shallowEqual)
+ 
   const queryHomePageData = () => {
     disPatchGoodPriceInfo() 
   }
@@ -26,6 +27,7 @@ const Home = memo(() => {
   return (
     <div className='HomeRoot'>
       <HomeBanner/>
+      
       <HomeContent 
         goodPriceInfo={goodPriceInfo} 
       />

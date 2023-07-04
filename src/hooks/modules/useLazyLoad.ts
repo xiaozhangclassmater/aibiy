@@ -1,13 +1,13 @@
 import { useRef, useState } from "react";
 import { useIntersectionObserver } from "..";
 export function useLazyLoad(callback: () => void) {
-  const Element = useRef<Element>(null)
+  const elRef = useRef<Element>(null)
   const [isActive, setisActive] = useState(false)
-  const { unobserve } = useIntersectionObserver(Element, ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
+  const { unobserve } = useIntersectionObserver(elRef, ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
     if (isIntersecting) {
       setisActive(isIntersecting)
       callback()
-      unobserve(Element)
+      unobserve(elRef)
     }
     else {
       setisActive(false)
@@ -15,5 +15,5 @@ export function useLazyLoad(callback: () => void) {
   }, {
     threshold: 0
   })
-  return { Element, isActive }
+  return { elRef, isActive }
 }

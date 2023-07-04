@@ -3,6 +3,7 @@ interface RoomItemWapperProps {
   verify_color?: string
   content_color?: string,
   proportion: string | number
+  flexshaking?: 0 | 1
 }
 export const RoomItemWapper = styled.div<RoomItemWapperProps>`
   width: ${props => props.proportion};
@@ -10,6 +11,7 @@ export const RoomItemWapper = styled.div<RoomItemWapperProps>`
   box-sizing: border-box;
   cursor: ${props => props.theme.SmallHand};
   border-radius : 10px;
+  flex-shrink: ${props => (props.flexshaking || 0)};
   &:hover{
     transform: translateY(-5px);
     transition: all .8s;

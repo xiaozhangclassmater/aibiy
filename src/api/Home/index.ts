@@ -31,3 +31,9 @@ export function queryCityCategaryInfo(url: string) {
     url,
   })
 }
+
+export function queryHousingSourcePlusInfo(url: string) {
+  return request<baseRoomInfo<newAddFiled>>({
+    url
+  })
+}

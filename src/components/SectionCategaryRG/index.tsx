@@ -11,8 +11,9 @@ interface SectionCategaryRgProps {
   requestFn?: () => void
 }
 const SectionCategaryRg = memo(({ catagaryInfo , requestFn }:SectionCategaryRgProps) => {
+  console.log('render SectionCategaryRg');
   const newFn = requestFn ? requestFn : () => {}
-  const { Element:sectionCatagrayRgRef } = useLazyLoad(newFn)
+  const { elRef:sectionCatagrayRgRef } = useLazyLoad(newFn)
   return (
    <SectionCategaryRgWapper ref={sectionCatagrayRgRef as any} >
     {

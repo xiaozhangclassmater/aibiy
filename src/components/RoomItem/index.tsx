@@ -3,7 +3,8 @@ import { memo, useMemo } from 'react'
 import { RoomItemWapper } from './style'
 interface RoomItemProps {
   item : RoomItem,
-  proportion : string | number
+  proportion : string | number,
+  flexshaking? : 0 | 1
 }
 const RoomItem = memo(( { item , proportion } :RoomItemProps) => {
   const computedProportion = useMemo(() => (typeof proportion === 'string' ? proportion : proportion + '%') , [proportion])
@@ -12,6 +13,7 @@ const RoomItem = memo(( { item , proportion } :RoomItemProps) => {
       verify_color={(item.verify_info.text_color || '#ebebeb')} 
       content_color={item?.bottom_info?.content_color || '#000'}
       proportion={computedProportion}
+      className='RoomItemWapper'
       >
       <div className='room-item'>
         <div className='cover'>

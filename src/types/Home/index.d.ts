@@ -1,5 +1,5 @@
-interface baseRoomInfo {
-  list: RoomItem[],
+interface baseRoomInfo<T = RoomItem> {
+  list: (RoomItem & T)[],
   title: string,
   type?: string,
   _id?: string,

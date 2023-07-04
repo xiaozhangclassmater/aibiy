@@ -10,9 +10,9 @@ const SectionCategaryRgWapper = styled.div`
 `
 const ScRgSkeletonWapper = styled.div`
   margin-top: 15px;
-.sksleton-card-wapper{
-  display: flex;
-}
+  .sksleton-card-wapper{
+    display: flex;
+  }
 `
 export { ScRgSkeletonWapper, SectionCategaryRgWapper };
 

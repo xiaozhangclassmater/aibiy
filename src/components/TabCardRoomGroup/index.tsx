@@ -19,7 +19,7 @@ const TabCardRoomGroup = memo(( { hotCityProductInfo  , proportion = '33.33%' , 
   
   const [ products  , setProducts ] = useState<(RoomItem & newAddFiled)[]>([])
   const [ currentCityName , setCurrentCityName ] = useState('')
-  const { Element :TabCardRef  } = useLazyLoad(requestFn ? requestFn : () => {})
+  const { elRef :TabCardRef  } = useLazyLoad(requestFn ? requestFn : () => {})
   const computedProportion = useMemo(() => (typeof proportion === 'string' ? proportion : proportion + '%') , [proportion])
   const cacheCurrentCityName = useMemo(() => currentCityName , [currentCityName])
   const getCityHousingResourceInfo = (cityName : string) => {
@@ -34,7 +34,7 @@ const TabCardRoomGroup = memo(( { hotCityProductInfo  , proportion = '33.33%' , 
     <TabCardRoomGroupWapper ref={TabCardRef as any}>
       {
         (!isEmpty(hotCityProductInfo)) && <div className='TabCard-RoomGroup-Wapper'>
-          <SectionTitle title={hotCityProductInfo.title || '热门城市'} subTitle={hotCityProductInfo.subtitle || "美丽的城市，邻人向往"} />
+          <SectionTitle title={hotCityProductInfo.title} subTitle={hotCityProductInfo.subtitle} />
           <TabCard tabList={hotCityProductInfo.dest_address || []} getProductInfo={getCityHousingResourceInfo}  />
           <div className='product-item-container'>
             {products?.length && products.map(item => <RoomItem proportion={computedProportion} item={item} key={item.id}/>)}

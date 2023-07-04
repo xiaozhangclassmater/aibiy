@@ -15,7 +15,7 @@ interface RoomGroupProps {
 }
 const RoomGroup = memo(( { productInfo  , skeletonNum = 8 , proportion = '25%' , requestFn } : RoomGroupProps ) => {
   const [ maxRenderCount , setMaxRenderCount] = useState(8)
-  const { Element : roomGroupRef } = useLazyLoad(requestFn ? requestFn : () => {})
+  const { elRef : roomGroupRef } = useLazyLoad(requestFn ? requestFn : () => {})
   const seeMore = useCallback(() => {
     
   } , [productInfo])

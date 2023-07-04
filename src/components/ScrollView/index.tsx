@@ -6,9 +6,10 @@ interface ScrollViewProps {
   children : React.ReactNode,
   scrollChildrenClassName : string,
   displacementsize? : string,
-  selectorType? : 'id' | 'class' | 'element'
+  selectorType? : 'id' | 'class' | 'element',
+  flexshaking? : 0 | 1
 }
-const ScrollView = memo(( { children , scrollChildrenClassName ,displacementsize = '0 -8px' , selectorType = 'class'} : ScrollViewProps ) => {
+const ScrollView = memo(( { children , scrollChildrenClassName ,displacementsize = '0 -8px' , selectorType = 'class' , flexshaking} : ScrollViewProps ) => {
   const [ showRightIcon , setShowRightIcon ] = useState(false)
   const [ showLeftIcon , setShowLeftIcon ] = useState(false)
   const [ positionIndex , setPositionIndex ] = useState(0)
@@ -61,7 +62,7 @@ const ScrollView = memo(( { children , scrollChildrenClassName ,displacementsize
   }
   
   return (
-    <ScrollViewWapper className='ScrollViewWapper' displacementsize={displacementsize}>
+    <ScrollViewWapper className='ScrollViewWapper' displacementsize={displacementsize} flexshaking={flexshaking}  >
       { showLeftIcon && <div className='leftIcon' onClick={() => controlClickHandle(false)}> <LeftIcon/></div>}
       <div className='scroll-content-hidden'>
         <div className='scroll-content' ref={scrollContentRef} style={{transform : `translate(-${offsetLeft}px)` }}>
