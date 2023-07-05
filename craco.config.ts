@@ -10,6 +10,10 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
+            modifyVars: {
+              '@primary-color': '#ff385c',
+              '@second-color': '#00848A;'
+            },
             additionalData: `@import "@/assets/styles/variables.less";`,
             javascriptEnabled: true,
           },
