@@ -37,3 +37,9 @@ export function queryHousingSourcePlusInfo(url: string) {
     url
   })
 }
+export function queryEntireRoomInfo(url: string, params: EntireRoomInfoparams) {
+  return request({
+    url,
+    params
+  })
+}

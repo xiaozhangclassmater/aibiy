@@ -1,4 +1,5 @@
-const themeConfig = {
+
+const themeConfig: ThemeConfig = {
   primaryColor: '#ff385c', // 主题色
   themeBorder: '#dddddd',
   themeBorderHover: '#000000',

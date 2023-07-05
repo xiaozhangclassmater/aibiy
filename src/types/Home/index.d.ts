@@ -86,3 +86,14 @@ interface cityCataGaryType {
   type: string,
   _id: string
 }
+
+interface EntireRoomInfoparams {
+  offset: number,
+  size: number
+}
+
+interface EntireRoomsInfo {
+  errcode: number,
+  list: RoomItem[],
+  totalCount: number
+}

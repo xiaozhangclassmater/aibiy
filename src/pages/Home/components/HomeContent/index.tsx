@@ -10,23 +10,23 @@ interface HomeContentProps {
   goodPriceInfo : baseRoomInfo
 }
 const HomeContent = memo(( { goodPriceInfo } : HomeContentProps ) => {
-  const { data : hotSourceRegion ,  run:hotSourceRegionRun } = useRequest<HotSourceCityType>(queryHotSourceRegionInfo , { 
-    argument : { url : '/api/home/discount' },
+  const { data : hotSourceRegion ,  run:hotSourceRegionRun } = useRequest<HotSourceCityType , typeof queryHotSourceRegionInfo>(queryHotSourceRegionInfo , { 
+    config : { url : '/api/home/discount' },
     manual : true
   })
   const { data : higHscoreInfo , run: higHscoreInfoRun} = useRequest<baseRoomInfo>(queryHighscoreInfo , { 
-    argument : {url : '/api/home/highscore'} , 
+    config : {url : '/api/home/highscore'} , 
     manual : true
   })
   const { data : hotRecommendDesc , run :hotRecommendDescRun  } = useRequest<HotRecemmendDestType>(queryHotRecommendInfo,{ 
-    argument:{ url : '/api/home/hotrecommenddest' } , 
+    config:{ url : '/api/home/hotrecommenddest' } , 
     manual : true
   })
   const { data : cityCategaryInfo , run : cityCategaryInfoRun } = useRequest<cityCataGaryType>(queryCityCategaryInfo, {
-    argument : { url :'/api/home/longfor'} , 
+    config : { url :'/api/home/longfor'} , 
     manual :true
   })
-  const { data:houSingSourcePlusInfo  } = useRequest(queryHousingSourcePlusInfo , { argument : { url : 'api/home/plus'} })
+  const { data:houSingSourcePlusInfo  } = useRequest(queryHousingSourcePlusInfo , { config : { url : 'api/home/plus'} })
 
   const getHotSourceRegionInfo = useCallback(() => hotSourceRegionRun() , [hotSourceRegion])
   const getHigHscoreInfo = useCallback(() => higHscoreInfoRun() , [higHscoreInfo])
