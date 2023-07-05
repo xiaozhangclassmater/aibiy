@@ -27,7 +27,6 @@ const Home = memo(() => {
   return (
     <div className='HomeRoot'>
       <HomeBanner/>
-      
       <HomeContent 
         goodPriceInfo={goodPriceInfo} 
       />

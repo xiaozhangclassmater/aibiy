@@ -1,8 +1,6 @@
 import { styled } from "styled-components";
 export const EntireFilterWapper = styled.div`
   display: flex;
-  padding: 10px 15px;
-  box-sizing: border-box;
   align-items: center;
   .filter-btn-item{
     height: 35px;

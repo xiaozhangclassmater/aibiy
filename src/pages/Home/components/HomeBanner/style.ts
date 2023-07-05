@@ -3,6 +3,6 @@ import styled from "styled-components";
 
 export const HomeBannerWapper = styled.div`
   height: 532px;
-  background: url(${CoverImg}) center/cover;
+  background: url(${CoverImg}) center/contain;
   background-size: 100% 100%;
 `

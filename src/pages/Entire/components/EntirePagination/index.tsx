@@ -1,8 +1,18 @@
+import { Pagination } from 'antd'
 import { memo } from 'react'
+import { EntirePaginationWapper } from './style'
 
-const EntirePagination = memo(() => {
+interface EntirePaginationProps {
+  currentPage : number,
+  total : number,
+  changeHandle : (page: number, pageSize: number) => void
+}
+
+const EntirePagination = memo(( { currentPage = 1 , total ,changeHandle } : EntirePaginationProps ) => {
   return (
-    <div>EntirePagination</div>
+    <EntirePaginationWapper>
+      <Pagination defaultCurrent={currentPage} pageSize={20} total={total} onChange={(page , pageSize) => changeHandle(page , pageSize)} showSizeChanger={false} />
+    </EntirePaginationWapper>
   )
 })
 

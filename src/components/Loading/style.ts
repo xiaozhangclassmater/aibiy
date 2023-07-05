@@ -6,4 +6,7 @@ export const LoadingWapper = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
+  .ant-spin-dot-item{
+    background-color: ${props => props.theme.primaryColor} !important;
+  }
 `
