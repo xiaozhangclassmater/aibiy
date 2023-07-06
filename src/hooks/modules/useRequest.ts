@@ -13,7 +13,7 @@ interface Options {
 type fnParams<T, P extends (...args: any[]) => Promise<AxiosResponse<T>>> = P;
 export function useRequest<T, P extends (...args: any[]) => Promise<AxiosResponse<T>> = any>(Fn: fnParams<T, P>, options: Options) {
   const [data, setData] = useState<T>()
-  const [error, setError] = useState(null)
+  const [onError, setOnError] = useState(null)
   const [loading, setLoading] = useState(true)
   const run = () => {
     if (!options?.manual) return
@@ -25,7 +25,7 @@ export function useRequest<T, P extends (...args: any[]) => Promise<AxiosRespons
       const { data } = await Fn(options.config.url, options.config.params) as AxiosResponse<T>
       setData(data)
     } catch (error: any) {
-      setError(error)
+      setOnError(error)
     } finally {
       options.closeLoadigDelay ? setTimeout(() => { setLoading(false) }, options.closeLoadigDelay) : setLoading(false)
     }
@@ -35,13 +35,12 @@ export function useRequest<T, P extends (...args: any[]) => Promise<AxiosRespons
    * @description 刷新函数 ，当你某个值更新之后 你可以重新运行该函数进行请求
    */
   const refresh = () => request()
-  const onError = () => error
   useEffect(() => {
     // 默认为false ，当为 true的时候 手动调用request 函数
     (!options?.manual) && request()
   }, [])
 
-  return { data, loading, error, run, onError, refresh }
+  return { data, loading, run, onError, refresh }
 }
 
 export default useRequest

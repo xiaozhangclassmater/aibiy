@@ -7,8 +7,8 @@ interface SectionTitleProps {
 const SectionTitle = memo(( { title , subTitle} : SectionTitleProps) => {
   return (
     <SectionTitleWapper>
-      <p className='title'>{title}</p>
-     { subTitle && <div className='desc'>{subTitle || "美丽的城市，邻人向往"}</div>}
+      { title && <p className='title'>{title}</p>}
+      { subTitle && <div className='desc'>{subTitle || "美丽的城市，邻人向往"}</div>}
     </SectionTitleWapper>
   )
 })

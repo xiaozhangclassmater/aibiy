@@ -1,13 +1,22 @@
 import { Rate } from 'antd'
-import { memo, useMemo } from 'react'
+import classNames from 'classnames'
+import { memo, useMemo, useState } from 'react'
 import { RoomItemWapper } from './style'
 interface RoomItemProps {
   item : RoomItem,
   proportion : string | number,
-  flexshaking? : 0 | 1
+  flexshaking? : 0 | 1,
 }
-const RoomItem = memo(( { item , proportion } :RoomItemProps) => {
+const RoomItem = memo(({
+  item , 
+  proportion,
+} :RoomItemProps
+) => {
   const computedProportion = useMemo(() => (typeof proportion === 'string' ? proportion : proportion + '%') , [proportion])
+  const [ showGlisten , setShowGlisten ] = useState(true)
+  setTimeout(() => {
+    setShowGlisten(false)
+  }, 1000);
   return (
     <RoomItemWapper 
       verify_color={(item.verify_info.text_color || '#ebebeb')} 
@@ -16,7 +25,7 @@ const RoomItem = memo(( { item , proportion } :RoomItemProps) => {
       className='RoomItemWapper'
       >
       <div className='room-item'>
-        <div className='cover'>
+        <div className={classNames('cover' ,  showGlisten ? 'shan' : '')}>
           <img src={item.picture_url} alt="" />
         </div>
         <div className='desc'>{item.verify_info.messages.join('.')}</div>

@@ -1,27 +1,19 @@
 import Loading from '@/components/Loading';
-import RoomItem from '@/components/RoomItem';
-import SectionTitle from '@/components/SectionTitle';
+import RoomGroup from '@/components/RoomGroup';
+import { isEmpty } from '@/utils';
 import { memo } from 'react';
 import { EntireRoomsWapper } from './style';
 interface EntireRoomsProps {
   info : EntireRoomsInfo ,
-  loading ? : boolean
+  loading ? : boolean,
 }
 const EntireRooms = memo(( { info , loading } :EntireRoomsProps) => {
   return (
     <EntireRoomsWapper className='entire-room-wapper' style={{ height : loading ? '500px' : '' }} >
-     
-    {!loading && <div className='wapper'>
-      <SectionTitle title='300多所住处'/>
-      <div className='room-container'>
-      {info.list.map(item => <RoomItem key={item.id} item={item} proportion={'20%'}  />)}
-      </div>
+    <div className='wapper'>
+      <RoomGroup loading={loading} maxRoomItemCount={20} proportion={'20%'} showFooter={false} productInfo={{...info , title : '300多家住所',subTitle : '你想要的都在爱彼迎'}} />
     </div>
-    }
-    { 
-      loading && <Loading />
-    }
-    
+    {isEmpty(info) && <Loading/>}
     </EntireRoomsWapper>
   )
 })

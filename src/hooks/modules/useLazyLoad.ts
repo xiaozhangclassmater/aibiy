@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { useIntersectionObserver } from "..";
-export function useLazyLoad(callback: () => void) {
-  const elRef = useRef<Element>(null)
+export function useLazyLoad<T extends HTMLDivElement>(callback: () => void) {
+  const elRef = useRef<T>(null)
   const [isActive, setisActive] = useState(false)
-  const { unobserve } = useIntersectionObserver(elRef, ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
+  const { unobserve } = useIntersectionObserver<T>(elRef, ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
     if (isIntersecting) {
       setisActive(isIntersecting)
       callback()

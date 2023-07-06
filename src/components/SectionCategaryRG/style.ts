@@ -5,6 +5,20 @@ const SectionCategaryRgWapper = styled.div`
   .sectionCategaryRg-wapper{
     width: 100%;
     height: 100%;
+    .card-enter {
+      opacity: 1;
+    }
+    .card-enter-active {
+      transition: opacity 0.6s ;
+      z-index: 1;
+    }
+    .card-exit {
+      opacity: 0;
+    }
+    .card-exit-active {
+      opacity: 1;
+      transition: opacity 800ms;
+    }
   }
 
 `

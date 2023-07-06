@@ -1,6 +1,6 @@
 import { ReactComponent as LeftIcon } from '@/icons/svg/arrow-left.svg'
 import { ReactComponent as RightIcon } from '@/icons/svg/arrow-right.svg'
-import { memo, useEffect, useMemo, useRef, useState } from 'react'
+import { forwardRef, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { ScrollViewWapper } from './style'
 interface ScrollViewProps {
   children : React.ReactNode,
@@ -9,7 +9,13 @@ interface ScrollViewProps {
   selectorType? : 'id' | 'class' | 'element',
   flexshaking? : 0 | 1
 }
-const ScrollView = memo(( { children , scrollChildrenClassName ,displacementsize = '0 -8px' , selectorType = 'class' , flexshaking} : ScrollViewProps ) => {
+const ScrollView = memo(forwardRef<HTMLDivElement , ScrollViewProps>(({ 
+  children ,
+  scrollChildrenClassName,
+  displacementsize = '0 -8px',
+  selectorType = 'class', 
+  flexshaking
+}, ref) => {
   const [ showRightIcon , setShowRightIcon ] = useState(false)
   const [ showLeftIcon , setShowLeftIcon ] = useState(false)
   const [ positionIndex , setPositionIndex ] = useState(0)
@@ -62,7 +68,7 @@ const ScrollView = memo(( { children , scrollChildrenClassName ,displacementsize
   }
   
   return (
-    <ScrollViewWapper className='ScrollViewWapper' displacementsize={displacementsize} flexshaking={flexshaking}  >
+    <ScrollViewWapper className='ScrollViewWapper' ref={ref} displacementsize={displacementsize} flexshaking={flexshaking}  >
       { showLeftIcon && <div className='leftIcon' onClick={() => controlClickHandle(false)}> <LeftIcon/></div>}
       <div className='scroll-content-hidden'>
         <div className='scroll-content' ref={scrollContentRef} style={{transform : `translate(-${offsetLeft}px)` }}>
@@ -72,6 +78,6 @@ const ScrollView = memo(( { children , scrollChildrenClassName ,displacementsize
       { showRightIcon && <div className='rightIcon' onClick={() => controlClickHandle(true)}><RightIcon/></div>}
     </ScrollViewWapper> 
   )
-})
+}))
 
 export default ScrollView

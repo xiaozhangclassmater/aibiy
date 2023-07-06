@@ -7,7 +7,7 @@ const NotFund = lazy(() => import('@/pages/404/index'))
 const routes: Array<RouteObject> = [
   {
     path: '/',
-    element: <Navigate to={'/home'} />
+    element: <Navigate to={'/home'} />,
   },
   {
     path: '/home',

@@ -12,7 +12,7 @@ const Entrie = memo(() => {
     size : 20,
     offset : 1
   })
-  const { data : roomInfo , refresh , loading} = useRequest<EntireRoomsInfo>(queryEntireRoomInfo , {
+  const { data : roomInfo , refresh , loading : requestRiLoading } = useRequest<EntireRoomsInfo>(queryEntireRoomInfo , {
     config : {
       url : 'api/entire/list',
       params : pageParams
@@ -23,15 +23,13 @@ const Entrie = memo(() => {
   const paginationChangeHandle = (size : number , pageSize : number) => {
     setPageParams({size : pageSize , offset : size})
   }
+  useEffect( () => { windowScrollTo() } , [])
   useEffect( () => { refresh() } , [pageParams])
-  
-  useEffect( () => {
-    windowScrollTo()
-  } , [])
+ 
   return (
    <EntireWapper>
     <EntireFilter/>
-    <EntireRooms info={cacheRoomInfo} loading={loading}   />
+    <EntireRooms info={cacheRoomInfo} loading={requestRiLoading}/>
     {!isEmpty(cacheRoomInfo) && <EntirePagination changeHandle={paginationChangeHandle} currentPage={pageParams?.offset || 1} total={cacheRoomInfo?.totalCount || 10}/>}
    </EntireWapper>
   )

@@ -11,13 +11,13 @@ interface TabCardProps {
 /**
  * @description Tab选项卡组件 ， 用于选择某个专栏显示指定数据
  */
-const TabCard = memo(( { tabList , getProductInfo } : TabCardProps ) => {
+const TabCard = memo(( { tabList = [] , getProductInfo } : TabCardProps ) => {
   console.log('父组件render');
   const [ currentIndex , setCurrentIndex ] = useState(0)
   const computedIndex = (index : number) => currentIndex === index;
   useEffect( () => {
     // 获取默认的城市信息
-    getProductInfo(tabList[0].name)
+    getProductInfo(tabList[0]?.name)
   } , [])
   
   const tabItemClickHandle = (index : number , cityName : string) : void => {
@@ -28,8 +28,8 @@ const TabCard = memo(( { tabList , getProductInfo } : TabCardProps ) => {
     <TabCardWapper>
       <ScrollView scrollChildrenClassName='tab-item'>
         {
-          tabList.length && 
-          tabList.map((item , index) => <div className={classNames('tab-item' ,{ 'active-item' :  computedIndex(index)})}  
+          tabList?.length && 
+          tabList?.map((item , index) => <div className={classNames('tab-item' ,{ 'active-item' :  computedIndex(index)})}  
           key={index} onClick={() => tabItemClickHandle(index , item.name)}>{item.name}</div>)
         }
       </ScrollView>

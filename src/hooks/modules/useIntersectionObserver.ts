@@ -1,10 +1,10 @@
 import { isEmpty } from "@/utils";
 import React, { useEffect, useMemo } from "react";
 
-const unRef = (target: React.RefObject<Element>) => target.current!
+const unRef = (target: React.RefObject<HTMLDivElement>) => target.current!
 
-export default function useIntersectionObserver(
-  target: React.RefObject<Element>,
+export default function useIntersectionObserver<T>(
+  target: React.RefObject<T>,
   callback: (entries: IntersectionObserverEntry[]) => void,
   options?: IntersectionObserverInit
 ) {
@@ -16,7 +16,7 @@ export default function useIntersectionObserver(
     targets.length > 0 && targets.forEach(el => el.current && observer?.observe(el.current))
   }, [])
 
-  function unobserve(target: React.RefObject<Element>) {
+  function unobserve(target: React.RefObject<HTMLDivElement>) {
     observer && observer.unobserve(unRef(target))
   }
 

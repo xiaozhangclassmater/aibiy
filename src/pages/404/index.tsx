@@ -1,6 +1,12 @@
-
-export default function NotFund() {
+import NotFundImage from '@/assets/img/404/404.png'
+import { memo } from 'react'
+import { NotFundWapper } from './style'
+const NotFund = memo(() => {
   return (
-    <div>页面未找到</div>
+    <NotFundWapper>
+      <img src={NotFundImage} alt="" />
+    </NotFundWapper>
   )
-}
+})
+
+export default NotFund
