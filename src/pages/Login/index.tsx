@@ -1,8 +1,8 @@
-import { memo } from 'react'
-
+import { memo } from 'react';
 const Login = memo(() => {
   return (
-    <div>Login</div>
+    <div id="danmu-container">
+    </div>
   )
 })
 

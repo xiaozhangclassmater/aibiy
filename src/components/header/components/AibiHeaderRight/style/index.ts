@@ -63,11 +63,13 @@ const MenusWrapper = styled.div`
   background-color: #fff;
   border-radius: 15px;
   user-select: none;
+  z-index: 99;
   box-shadow : var(--e-swdx-p);
   .menus-contianer{
     width: 100%;
     height: 100%;
     padding: 8px 0px;
+    
     li {
       height: 40px;
       line-height: 35px;

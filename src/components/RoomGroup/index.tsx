@@ -14,7 +14,8 @@ interface RoomGroupProps {
   skeletonNum? : number,
   proportion? : string | number,
   showFooter? : boolean
-  loading ? : boolean
+  loading ? : boolean,
+  showSwiper? : boolean
   requestFn? : () => void
 }
 const RoomGroup = memo(({
@@ -24,6 +25,7 @@ const RoomGroup = memo(({
   maxRoomItemCount= 8,
   showFooter = true ,
   loading,
+  showSwiper = false,
   requestFn
 } : RoomGroupProps 
 ) => {
@@ -36,7 +38,7 @@ const RoomGroup = memo(({
          <div className='room-group-wapper fead'>
           <SectionTitle title={productInfo?.title || '热门城市'} subTitle={productInfo?.subTitle || "美丽的城市，邻人向往"} />
           <CSSTransition classNames={'fead'} timeout={300} in={loading} >
-            <Rooms proportion={proportion} ref={animationRef} list={productInfo?.list || []} maxRoomItemCount={maxRoomItemCount} />
+            <Rooms showSwiper={showSwiper} proportion={proportion} ref={animationRef} list={productInfo?.list || []} maxRoomItemCount={maxRoomItemCount} />
           </CSSTransition>
           {(showFooter && (!isEmpty(productInfo))) && <SectionFooter mtop='15px' IconSvg={RightSvg} seeMore={seeMore} />}
         </div>

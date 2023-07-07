@@ -28,6 +28,7 @@ type dest_address_list = dest_address_Item[]
 
 interface newAddFiled {
   reviews?: Review_Item[];
+  picture_urls?: string[]
 }
 interface verify_info_Item {
   messages: []

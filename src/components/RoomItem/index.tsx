@@ -1,15 +1,18 @@
 import { Rate } from 'antd'
 import classNames from 'classnames'
 import { memo, useMemo, useState } from 'react'
+import AibiCarousel from '../AibiCarousel'
 import { RoomItemWapper } from './style'
 interface RoomItemProps {
-  item : RoomItem,
+  item : RoomItem & newAddFiled,
   proportion : string | number,
   flexshaking? : 0 | 1,
+  showSwiper? : boolean
 }
 const RoomItem = memo(({
   item , 
   proportion,
+  showSwiper = false
 } :RoomItemProps
 ) => {
   const computedProportion = useMemo(() => (typeof proportion === 'string' ? proportion : proportion + '%') , [proportion])
@@ -25,9 +28,11 @@ const RoomItem = memo(({
       className='RoomItemWapper'
       >
       <div className='room-item'>
-        <div className={classNames('cover' ,  showGlisten ? 'shan' : '')}>
+        {!showSwiper && <div className={classNames('cover' ,  showGlisten ? 'shan' : '')}>
           <img src={item.picture_url} alt="" />
         </div>
+        }
+        {showSwiper && <AibiCarousel swiperList={ item.picture_urls || []}/>}
         <div className='desc'>{item.verify_info.messages.join('.')}</div>
         <div className='product-name'>{item.name}</div>
         <div className='price'>{item.price_format}<span> / 晚</span></div>
