@@ -41,7 +41,7 @@ const AibiCarousel = memo(({
     <AibiCarouselWapper className='AibiCarouselWapper' ref={roomItemVieportRef} >
       {/* dots={{className : 'image-poiter'}} */}
       <Carousel dots={false} className='carousel' ref={carouselRef}>
-        {swiperList.map((item, index) => {
+        {swiperList.slice(0, 1).map((item, index) => {
           return (
             <div key={index} className='carousel-item' ref={elRef}>
               <h3 className='carousel-confianer'>

@@ -16,3 +16,22 @@ export function resetScrollTop(scrollTop = 0) {
 export function windowScrollTo(x = 0, y = 0) {
   'scrollTo' in window && window.scrollTo(x, y)
 }
+
+type jsType = string | number | object | undefined | Array<any>
+function isSupportApi(apiName: string) {
+  return apiName in window
+}
+
+
+export function getCacheData(key: string) {
+  return JSON.parse(localStorage.getItem(key) || '')
+}
+export function setCacheData(key: string, value: jsType) {
+  localStorage.setItem(key, JSON.stringify(value))
+}
+export function removeCacheData(key: string) {
+  localStorage.removeItem(key)
+}
+export function removeAllCacheData() {
+  localStorage.clear()
+}

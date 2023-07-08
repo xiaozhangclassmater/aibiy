@@ -1,3 +1,4 @@
+const Detail = lazy(() => import('@/pages/Detail'))
 import { lazy } from 'react'
 import { Navigate, RouteObject } from 'react-router'
 const Home = lazy(() => import('@/pages/Home/index'))
@@ -20,6 +21,10 @@ const routes: Array<RouteObject> = [
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/detail',
+    element: <Detail />
   },
   {
     path: '*',

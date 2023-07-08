@@ -4,5 +4,8 @@ interface storeStateType {
     higHscoreInfo: baseRoomInfo,
     hotSourceRegion: HotSourceCityType
     hotRecommendDesc: HotRecemmendDestType
+  },
+  DetailModule: {
+    detailInfo: baseRoomInfo & newAddFiled
   }
 }
