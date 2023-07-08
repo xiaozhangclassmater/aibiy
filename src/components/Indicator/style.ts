@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 
 export const IndiCatorWapper = styled.div`
+  display: flex;
+  justify-content: center;
   width: 50%;
   position: absolute;
   bottom: 10px;

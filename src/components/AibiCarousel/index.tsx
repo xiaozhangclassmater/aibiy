@@ -1,11 +1,12 @@
+import useLazyLoad from '@/hooks/modules/useLazyLoad'
 import { ReactComponent as LeftIconSvg } from '@/icons/svg/arrow-left.svg'
 import { ReactComponent as RightIconSvg } from '@/icons/svg/arrow-right.svg'
 import { Carousel } from 'antd'
+import { CarouselRef } from 'antd/es/carousel'
 import classNames from 'classnames'
 import { memo, useRef, useState } from 'react'
 import IndiCator from '../Indicator'
 import { AibiCarouselWapper } from './style'
-// import  * as _ from 'loadsh'
 interface AibiCarouselProps {
   swiperList: string[]
 }
@@ -15,40 +16,44 @@ const AibiCarousel = memo(({
 ) => {
   const [showMask, setShowMask] = useState(false)
   const [selectorIndex, setSelectorIndex] = useState(0)
-  const carouselRef = useRef<any>(null)
-  const contentStyle: React.CSSProperties = {
-    margin: 0,
-    height: '230px',
-    color: '#fff',
-    lineHeight: '230px',
-    textAlign: 'center',
-    background: '#364d79',
-  };
+  const carouselRef = useRef<CarouselRef>(null)
+  const roomItemVieportRef = useRef<HTMLDivElement>(null)
   const defaultSvgStyle: React.CSSProperties = { height: '20px', width: '20px', fill: '#fff' }
-  const swiperEnter = () => {
+  const { elRef, isActive } = useLazyLoad<HTMLImageElement>(() => { }, {
+    root: roomItemVieportRef.current,
+    threshold: 0
 
+  })
+  // console.log('isActive', isActive);、
+  const swiperEnter = () => {
     setShowMask(true)
   }
   const swiperLeave = () => {
     setShowMask(false)
   }
   const changeImage = (isNext: boolean) => {
-    let newIndex = isNext ? selectorIndex + 1 : selectorIndex - 1
-    isNext ? carouselRef.current!.next() : carouselRef.current!.prev()
+    let newIndex = null
     const length = swiperList.length
+    if (isNext) {
+      newIndex = selectorIndex + 1
+      carouselRef.current!.next()
+    } else {
+      newIndex = selectorIndex - 1
+      carouselRef.current!.prev()
+    }
     if (newIndex < 0) newIndex = length - 1
     if (newIndex > length - 1) newIndex = 0
     setSelectorIndex(newIndex)
   }
   return (
-    <AibiCarouselWapper>
+    <AibiCarouselWapper className='AibiCarouselWapper' ref={roomItemVieportRef} >
       {/* dots={{className : 'image-poiter'}} */}
-      <Carousel dots={false} ref={carouselRef} >
-        {swiperList.slice(0, 3).map((item, index) => {
+      <Carousel dots={false} className='carousel' ref={carouselRef}>
+        {swiperList.map((item, index) => {
           return (
-            <div key={index} onMouseEnter={() => swiperEnter()} onMouseLeave={() => swiperLeave()}>
-              <h3 style={contentStyle}>
-                <img src={item} alt="" />
+            <div key={index} className='carousel-item' ref={elRef} onMouseEnter={() => swiperEnter()} onMouseLeave={() => swiperLeave()}>
+              <h3 className='carousel-confianer'>
+                <img src={item} alt="" className='image' />
               </h3>
             </div>
           )

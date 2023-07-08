@@ -2,6 +2,24 @@ import { styled } from "styled-components";
 
 export const AibiCarouselWapper = styled.div`
   position: relative;
+  .carousel{
+    .carousel-item{
+      .carousel-confianer{
+        margin: 0;
+        height: 230px;
+        color: #fff;
+        line-height: 230px;
+        text-align: center;
+        background: transparent;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+       
+      }
+    }
+  }
   .image-poiter{
     display: flex;
     width: 40%;
