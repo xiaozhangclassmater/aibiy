@@ -6,4 +6,4 @@ const Detail = memo(() => {
   )
 })
 
-export default Detail
+export default Detail 

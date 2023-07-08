@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const AibiCarouselWapper = styled.div`
   position: relative;
+  
   .carousel{
     .carousel-item{
       .carousel-confianer{

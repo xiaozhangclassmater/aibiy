@@ -14,7 +14,6 @@ const AibiCarousel = memo(({
   swiperList = []
 }: AibiCarouselProps
 ) => {
-  const [showMask, setShowMask] = useState(false)
   const [selectorIndex, setSelectorIndex] = useState(0)
   const carouselRef = useRef<CarouselRef>(null)
   const roomItemVieportRef = useRef<HTMLDivElement>(null)
@@ -24,13 +23,6 @@ const AibiCarousel = memo(({
     threshold: 0
 
   })
-  // console.log('isActive', isActive);、
-  const swiperEnter = () => {
-    setShowMask(true)
-  }
-  const swiperLeave = () => {
-    setShowMask(false)
-  }
   const changeImage = (isNext: boolean) => {
     let newIndex = null
     const length = swiperList.length
@@ -51,7 +43,7 @@ const AibiCarousel = memo(({
       <Carousel dots={false} className='carousel' ref={carouselRef}>
         {swiperList.map((item, index) => {
           return (
-            <div key={index} className='carousel-item' ref={elRef} onMouseEnter={() => swiperEnter()} onMouseLeave={() => swiperLeave()}>
+            <div key={index} className='carousel-item' ref={elRef}>
               <h3 className='carousel-confianer'>
                 <img src={item} alt="" className='image' />
               </h3>
