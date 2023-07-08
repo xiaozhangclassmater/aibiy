@@ -3,8 +3,10 @@ import AbiHeaderCenterWrapper from './style/index'
 const AbiHeaderCenter = memo(() => {
   return (
     <AbiHeaderCenterWrapper className='center'>
-      <div className='serach-contianer'>
-        center
+      <div className='search-bar'>
+        <div className='text'>
+          搜索房源和体验
+        </div>
       </div>
     </AbiHeaderCenterWrapper>
   )

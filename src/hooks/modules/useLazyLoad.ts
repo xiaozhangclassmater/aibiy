@@ -4,7 +4,6 @@ function useLazyLoad<T extends HTMLDivElement>(callback: () => void, options?: I
   const elRef = useRef<T>(null)
   const [isActive, setisActive] = useState(false)
   const { unobserve } = useIntersectionObserver<T>(elRef, ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
-    // console.log('isIntersecting', isIntersecting);
     if (isIntersecting) {
       setisActive(true)
       callback()

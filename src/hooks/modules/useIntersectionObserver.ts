@@ -14,7 +14,7 @@ export default function useIntersectionObserver<T>(
   useEffect(() => {
     observer = new IntersectionObserver(callback, options)
     targets.length > 0 && targets.forEach(el => el.current && observer?.observe(el.current))
-  }, [options])
+  }, [])
 
   function unobserve(target: React.RefObject<HTMLDivElement>) {
     observer && observer.unobserve(unRef(target))
