@@ -25,7 +25,8 @@ const RoomItem = memo(({
   setTimeout(() => {
     setShowGlisten(false)
   }, 1000);
-  const toDetailPage = () => {
+  const toDetailPage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault()
     if (!showSwiper) return
     dispatch(saveDetailInfo(item))
     router('/detail')
@@ -36,7 +37,7 @@ const RoomItem = memo(({
       content_color={item?.bottom_info?.content_color || '#000'}
       proportion={computedProportion}
       className='RoomItemWapper'
-      onClick={() => toDetailPage()}
+      onClick={(e) => toDetailPage(e)}
     >
       <div className='room-item'>
         {!showSwiper && <div className={classNames('cover', showGlisten ? 'shan' : '')}>

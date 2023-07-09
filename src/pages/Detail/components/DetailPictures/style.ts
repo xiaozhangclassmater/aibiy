@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const DetailPictureWapper = styled.div`
   width: 100%;
   height: 100%;
-  .children {
+  .pictures {
     display: flex;
     height: 580px;
     .picture-left,.picture-right{

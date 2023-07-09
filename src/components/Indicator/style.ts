@@ -3,15 +3,12 @@ import { styled } from "styled-components";
 export const IndiCatorWapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 50%;
   position: absolute;
   bottom: 10px;
-  height: 12px;
   left: 0;
   right: 0;
   margin: 0 auto;
    .visualArea-width{
-    width: 100px;
     overflow: hidden;
    }
   .IndiCator-content {

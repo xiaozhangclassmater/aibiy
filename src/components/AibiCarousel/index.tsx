@@ -18,12 +18,14 @@ const AibiCarousel = memo(({
   const carouselRef = useRef<CarouselRef>(null)
   const roomItemVieportRef = useRef<HTMLDivElement>(null)
   const defaultSvgStyle: React.CSSProperties = { height: '20px', width: '20px', fill: '#fff' }
-  const { elRef, isActive } = useLazyLoad<HTMLImageElement>(() => { }, {
+  const [showMask, setShowMask] = useState(false)
+  const { elRef } = useLazyLoad<HTMLImageElement>(() => { }, {
     root: roomItemVieportRef.current,
     threshold: 0
 
   })
-  const changeImage = (isNext: boolean) => {
+  const changeImage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, isNext: boolean) => {
+    e.stopPropagation()
     let newIndex = null
     const length = swiperList.length
     if (isNext) {
@@ -37,11 +39,14 @@ const AibiCarousel = memo(({
     if (newIndex > length - 1) newIndex = 0
     setSelectorIndex(newIndex)
   }
+  const swiperOperation = (isLeave: boolean) => {
+    setShowMask(isLeave ? false : true)
+  }
   return (
-    <AibiCarouselWapper className='AibiCarouselWapper' ref={roomItemVieportRef} >
+    <AibiCarouselWapper className='AibiCarouselWapper' ref={roomItemVieportRef} onMouseEnter={() => swiperOperation(false)} onMouseLeave={() => swiperOperation(true)}  >
       {/* dots={{className : 'image-poiter'}} */}
       <Carousel dots={false} className='carousel' ref={carouselRef}>
-        {swiperList.slice(0, 1).map((item, index) => {
+        {swiperList.slice(0, 5).map((item, index) => {
           return (
             <div key={index} className='carousel-item' ref={elRef}>
               <h3 className='carousel-confianer'>
@@ -63,9 +68,9 @@ const AibiCarousel = memo(({
         }
       </IndiCator>
       {
-        <div className='mask'>
-          <div className='left' onClick={() => changeImage(false)} ><LeftIconSvg style={defaultSvgStyle} /></div>
-          <div className='right' onClick={() => changeImage(true)}><RightIconSvg style={defaultSvgStyle} /></div>
+        showMask && <div className='mask'>
+          <div className='left' onClick={(e) => changeImage(e, false)}><LeftIconSvg style={defaultSvgStyle} /></div>
+          <div className='right' onClick={(e) => changeImage(e, true)}><RightIconSvg style={defaultSvgStyle} /></div>
         </div>
       }
     </AibiCarouselWapper>

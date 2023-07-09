@@ -16,6 +16,18 @@ const AbiHeaderLeftWrapper = styled.div`
       margin-left: 5px;
     }
   }
+  .back{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .anticon{
+      width: 15px !important;
+      height: 15px !important;
+    }
+    .back-text{
+      display: block;
+    }
+  }
 `
 
 export default AbiHeaderLeftWrapper
