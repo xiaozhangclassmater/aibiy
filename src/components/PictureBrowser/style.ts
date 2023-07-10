@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 interface PictureBrowserWapperProps {
-  isRight?: boolean
+  isright?: string | undefined
 }
 export const PictureBrowserWapper = styled.div<PictureBrowserWapperProps>`
   position: fixed;
@@ -43,7 +43,7 @@ export const PictureBrowserWapper = styled.div<PictureBrowserWapperProps>`
         user-select: none;
       }
       .pictrue-enter {
-        transform: ${props => props.isRight ? `translateX(100%)` : 'translateX(-100%)'};
+        transform: ${props => props.isright ? `translateX(100%)` : 'translateX(-100%)'};
         opacity: 0;
       }
       .pictrue-enter-active{

@@ -15,7 +15,7 @@ const PictureBrowser = memo((
   { pictures, closePicturePreView }: PictureBrowserProps
 ) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isRight, setisRight] = useState(false)
+  const [isright, setisRight] = useState(false)
   const [showTabs, setShowTabs] = useState(true)
   useEffect(() => {
     setBodyStyle('overflow', 'hidden')
@@ -38,7 +38,7 @@ const PictureBrowser = memo((
     setCurrentIndex(index)
   }
   return (
-    <PictureBrowserWapper className='PictureBrowserWapper' isRight={isRight} >
+    <PictureBrowserWapper className='PictureBrowserWapper' isright={isright ? String(isright) : undefined} >
       <div className="top" onClick={() => closePicturePreView(false)}>
         <CloseOutlined />
       </div>
@@ -68,7 +68,7 @@ const PictureBrowser = memo((
                 {
                   pictures.map((item, index) => {
                     return (
-                      <div className='picture-item' onClick={() => setShowCurrentImage(index)}>
+                      <div className='picture-item' key={index} onClick={() => setShowCurrentImage(index)}>
                         <img src={item} alt="" />
                         <div className={classNames('mask', currentIndex === index ? 'mask-active' : '')}></div>
                       </div>
